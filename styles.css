@@ -1,0 +1,18 @@
+div.card-container {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  column-gap: 32px !important;
+  row-gap: 32px !important;
+  margin-top: 32px !important;
+  margin-bottom: 32px !important;
+}
+
+.card-hover:hover {
+  border-color: var(--vocs-color_text) !important;
+}
+
+@media (max-width: 768px) {
+  div.card-container {
+    grid-template-columns: 1fr !important;
+  }
+}
