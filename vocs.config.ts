@@ -17,31 +17,12 @@ export default defineConfig({
       link: '/getting-started',
     },
     {
-      text: '3. Concepts',
-      link: '/concepts',
+      text: '3. Aztec vs Ethereum',
+      link: '/aztec-nr/aztec-vs-ethereum',
     },
     {
-      text: '4. Guides',
-      collapsed: false,
-      items: [
-        {
-          text: '4.1 Smart Contracts',
-          items: [
-            {
-              text: '4.1.1 Counter Contract',
-              link: '/guides/smart-contracts/counter-contract',
-            },
-            {
-              text: '4.1.2 Token Contract',
-              link: '/guides/smart-contracts/token-contract',
-            },
-            {
-              text: '4.1.3 Private Payments',
-              link: '/guides/smart-contracts/private-payments',
-            },
-          ],
-        },
-      ],
+      text: '4. Addresses & Keys',
+      link: '/addresses-and-keys',
     },
     {
       text: '5. Aztec.nr',
@@ -52,11 +33,175 @@ export default defineConfig({
           link: '/aztec-nr/overview',
         },
         {
-          text: '5.2 Getting Started',
-          link: '/aztec-nr/getting-started',
+          text: '5.2 Introduction to Private Smart Contracts',
+          collapsed: true,
+          items: [
+            {
+              text: '5.2.1 A Simple Aztec Smart Contract',
+              link: '/aztec-nr/introduction-to-private-smart-contracts/simple-contract'
+            },
+            {
+              text: '5.2.2 Example Aztec Smart Contracts',
+              link: '/aztec-nr/introduction-to-private-smart-contracts/examples'
+            }
+          ]
         },
         {
-          text: '5.3 Reference',
+          text: '5.3 Installation',
+          link: '/aztec-nr/installation',
+        },
+        {
+          text: '5.4 Language Description',
+          collapsed: true,
+          items: [
+            {
+              text: '5.4.1 Project Structure',
+              link: '/aztec-nr/language-description/project-structure'
+            },
+            {
+              text: '5.4.2 Contract Structure',
+              link: '/aztec-nr/language-description/contract-structure'
+            },
+            {
+              text: '5.4.3 Declaring a Contract',
+              link: '/aztec-nr/language-description/declaring-a-contract'
+            },
+            {
+              text: '5.4.4 Functions',
+              link: '/aztec-nr/language-description/functions'
+            },
+            {
+              text: '5.4.5 Calling Other Contracts',
+              link: '/aztec-nr/language-description/calling-other-contracts'
+            },
+            {
+              text: '5.4.6 Aztec Attributes',
+              link: '/aztec-nr/language-description/aztec-attributes'
+            },
+            {
+              text: '5.4.7 Global Variables',
+              link: '/aztec-nr/language-description/global-variables'
+            },
+            {
+              text: '5.4.8 Public State Variables',
+              link: '/aztec-nr/language-description/public-state-variables'
+            },
+            {
+              text: '5.4.9 Private State Variables',
+              collapsed: true,
+              items: [
+                {
+                  text: 'Notes Types',
+                  link: '/aztec-nr/language-description/private-state-variables/notes-types'
+                },
+                {
+                  text: 'Partial Notes',
+                  link: '/aztec-nr/language-description/private-state-variables/partial-notes'
+                },
+                {
+                  text: 'Declaring Private State Variables',
+                  link: '/aztec-nr/language-description/private-state-variables/declaring-private-state-variables'
+                }
+              ]
+            },
+            {
+              text: '5.4.10 Events',
+              link: '/aztec-nr/language-description/events'
+            },
+            {
+              text: '5.4.11 Logs',
+              link: '/aztec-nr/language-description/logs'
+            },
+            {
+              text: '5.4.12 Private Messaging',
+              link: '/aztec-nr/language-description/private-messaging'
+            },
+            {
+              text: '5.4.13 L1<>L2 Messaging',
+              link: '/aztec-nr/language-description/l1-l2-messaging'
+            },
+            {
+              text: '5.4.14 Cross-chain Interaction',
+              link: '/aztec-nr/language-description/cross-chain-interaction'
+            },
+            {
+              text: '5.4.15 Macros',
+              link: '/aztec-nr/language-description/macros'
+            },
+            {
+              text: '5.4.16 Protocol Oracles',
+              link: '/aztec-nr/language-description/protocol-oracles'
+            },
+            {
+              text: '5.4.17 Libraries',
+              link: '/aztec-nr/language-description/libraries'
+            },
+            {
+              text: '5.4.18 Upgradeable Contracts',
+              link: '/aztec-nr/language-description/upgradeable-contracts'
+            }
+          ]
+        },
+        {
+          text: '5.5 Compiling',
+          link: '/aztec-nr/compiling',
+        },
+        {
+          text: '5.6 Testing and Profiling',
+          link: '/aztec-nr/testing-and-profiling',
+        },
+        {
+          text: '5.7 Debugging',
+          link: '/aztec-nr/debugging',
+        },
+        {
+          text: '5.8 Deploying',
+          link: '/aztec-nr/deploying',
+        },
+        {
+          text: '5.9 Advanced Features',
+          collapsed: true,
+          items: [
+            {
+              text: '5.9.1 Custom Notes',
+              link: '/aztec-nr/advanced-features/custom-notes'
+            }
+          ]
+        },
+        {
+          text: '5.10 Common Patterns',
+          collapsed: true,
+          items: [
+            {
+              text: '5.10.1 Mutating Private State in Private Functions',
+              link: '/aztec-nr/common-patterns/mutating-private-state-in-private-functions'
+            }
+          ]
+        },
+        {
+          text: '5.11 Optimizations and Gas',
+          collapsed: true,
+          items: [
+            {
+              text: '5.11.1 Gas',
+              link: '/aztec-nr/optimizations-and-gas/gas'
+            },
+            {
+              text: '5.11.2 Optimizing Private Functions',
+              link: '/aztec-nr/optimizations-and-gas/optimizing-private-functions'
+            },
+            {
+              text: '5.11.3 Reducing Gas Costs',
+              link: '/aztec-nr/optimizations-and-gas/reducing-gas-costs'
+            }
+          ]
+        },
+        {
+          text: '5.12 Protocol Upgrades',
+          link: '/aztec-nr/protocol-upgrades',
+        },
+        {
+          text: '5.13 Reference',
           link: '/aztec-nr/reference',
         },
       ],

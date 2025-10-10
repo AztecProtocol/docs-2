@@ -1,0 +1,408 @@
+import { Tabs, TabItem } from '../../components/Tabs'
+
+# Getting Started
+
+This guide explains the differences between sandbox and testnet and how to get started with each.
+
+## Sandbox vs Testnet: Key Differences
+
+Before diving into the setup, it's important to understand the differences between sandbox and testnet:
+
+### Sandbox (Local Development)
+
+- Runs locally on your machine
+- No proving by default (faster development)
+- No fees
+- Instant block times
+- Test accounts automatically deployed
+- Ideal for rapid development and testing
+
+### Testnet (Remote Network)
+
+- Remote environment with network of sequencers
+- Always has proving enabled (longer transaction times)
+- Always has fees enabled (need to pay or sponsor fees)
+- ~36 second block times, longer L1 settlement
+- No automatic test accounts
+- Ideal for production-like testing
+
+<Tabs defaultValue="testnet">
+  <TabItem value="sandbox" label="Sandbox">
+
+## Prerequisites
+
+You need two global dependencies on your machine:
+
+- Node.js v18 or higher
+- Docker (visit [this page of the Docker docs](https://docs.docker.com/get-docker/) on how to install it)
+
+## Install and run the sandbox
+
+### Start Docker
+
+Docker needs to be running in order to install the sandbox. Find instructions on the [Docker website](https://docs.docker.com/get-started/).
+
+### Install the sandbox
+
+Run:
+
+```bash
+bash -i <(curl -s https://install.aztec.network)
+```
+
+This will install the following tools:
+
+- **aztec** - launches various infrastructure subsystems (full sandbox, sequencer, prover, pxe, etc) and provides utility commands to interact with the network
+- **aztec-nargo** - aztec's build of nargo, the noir compiler toolchain.
+- **aztec-postprocess-contract** - postprocessing tool for Aztec contracts (transpilation and VK generation).
+- **aztec-up** - a tool to upgrade the aztec toolchain to the latest, or specific versions.
+- **aztec-wallet** - a tool for interacting with the aztec network
+
+### Start the sandbox
+
+Once these have been installed, to start the sandbox, run:
+
+```bash
+aztec start --sandbox
+```
+
+**Congratulations, you have just installed and run the Aztec Sandbox!**
+
+In the terminal, you will see some logs:
+
+1. Sandbox version
+2. Contract addresses of rollup contracts
+3. PXE (private execution environment) setup logs
+4. Initial accounts that are shipped with the sandbox and can be used in tests
+
+You'll know the sandbox is ready to go when you see something like this:
+
+```bash
+[INFO] Aztec Server listening on port 8080
+```
+
+## Using the sandbox test accounts
+
+To add the test accounts in the PXE, run this in another terminal:
+
+```bash
+aztec-wallet import-test-accounts
+```
+
+We'll use the first test account, `test0`, throughout to pay for transactions.
+
+## Creating an account in the sandbox
+
+```bash
+aztec-wallet create-account -a my-wallet --payment method=fee_juice,feePayer=test0
+```
+
+This will create a new wallet with an account and give it the alias `my-wallet`. Accounts can be referenced with `accounts:<alias>`. You will see logs telling you the address, public key, secret key, and more.
+
+On successful deployment of the account, you should see something like this:
+
+```bash
+New account:
+
+Address:         0x066108a2398e3e2ff53ec4b502e4c2e778c6de91bb889de103d5b4567530d99c
+Public key:      0x007343da506ea513e6c05ba4d5e92e3c682333d97447d45db357d05a28df0656...
+Secret key:     0x1c94f8b19e91d23fd3ab6e15f7891fde7ba7cae01d3fa94e4c6afb4006ec0cfb
+...
+Account stored in database with aliases last & my-wallet
+```
+
+## Deploying a contract
+
+The sandbox comes with some contracts that you can deploy and play with. One of these is an example token contract.
+
+Deploy it with this:
+
+```bash
+aztec-wallet deploy TokenContractArtifact --from accounts:test0 --args accounts:test0 TestToken TST 18 -a testtoken
+```
+
+This takes:
+- the contract artifact as the argument, which is `TokenContractArtifact`
+- the deployer account, which we used `test0`
+- the args that the contract constructor takes, which is the `admin` (`accounts:test0`), `name` (`TestToken`), `symbol` (`TST`), and `decimals` (`18`).
+- an alias `testtoken` (`-a`) so we can easily reference it later with `contracts:testtoken`
+
+On successful deployment, you should see something like this:
+
+```bash
+Contract deployed at 0x15ce68d4be65819fe9c335132f10643b725a9ebc7d86fb22871f6eb8bdbc3abd
+Contract stored in database with aliases last & testtoken
+```
+
+## Minting public tokens
+
+Call the public mint function like this:
+
+```bash
+aztec-wallet send mint_to_public --from accounts:test0 --contract-address contracts:testtoken --args accounts:test0 100
+```
+
+This takes:
+- the function name as the argument, which is `mint_to_public`
+- the `from` account (caller) which is `accounts:test0`
+- the contract address, which is aliased as `contracts:testtoken` (or simply `testtoken`)
+- the args that the function takes, which is the account to mint the tokens into (`test0`), and `amount` (`100`).
+
+A successful call should print transaction details.
+
+You can double-check by calling the function that checks your public account balance:
+
+```bash
+aztec-wallet simulate balance_of_public --from test0 --contract-address testtoken --args accounts:test0
+```
+
+This should print `Simulation result: 100n`
+
+## Playing with hybrid state and private functions
+
+Move some tokens from public to private state:
+
+```bash
+aztec-wallet send transfer_to_private --from accounts:test0 --contract-address testtoken --args accounts:test0 25
+```
+
+Now when you call `balance_of_public` again you will see 75!
+
+And then call `balance_of_private` to check that you have your tokens:
+
+```bash
+aztec-wallet simulate balance_of_private --from test0 --contract-address testtoken --args accounts:test0
+```
+
+This should print `Simulation result: 25n`
+
+**Congratulations, you now know the fundamentals of working with the Aztec sandbox!**
+
+## What's next?
+
+Want to build something cool on Aztec?
+
+- Check out the [Token Contract Tutorial](./docs/tutorials/contract_tutorials/token_contract.md) for a beginner tutorial
+- Start on your own thing and check out the How To Guides to help you!
+
+</TabItem>
+<TabItem value="testnet" label="Testnet">
+
+## Prerequisites
+
+Before working with testnet, ensure you have:
+
+1. [Docker](https://docs.docker.com/get-started/get-docker/) installed
+2. Aztec CLI installed:
+
+```sh
+bash -i <(curl -s https://install.aztec.network)
+```
+
+3. The testnet version installed:
+
+```bash
+aztec-up -v latest
+```
+
+:::warning
+The testnet is version dependent. Maintain version consistency when interacting with the testnet to reduce errors.
+:::
+
+## Getting Started on Testnet
+
+### Step 1: Set up your environment
+
+Set the required environment variables:
+
+```bash
+export NODE_URL=https://aztec-testnet-fullnode.zkv.xyz
+export SPONSORED_FPC_ADDRESS=0x299f255076aa461e4e94a843f0275303470a6b8ebe7cb44a471c66711151e529
+```
+
+### Step 2: Create and deploy an account
+
+Unlike sandbox, testnet has no pre-deployed accounts. You need to create your own:
+
+```bash
+aztec-wallet create-account \
+    --register-only \
+    --node-url $NODE_URL \
+    --alias my-wallet
+```
+
+This creates an account but doesn't deploy it yet. Next, register with the fee sponsor to avoid paying fees:
+
+```bash
+aztec-wallet register-contract \
+    --node-url $NODE_URL \
+    --from my-wallet \
+    --alias sponsoredfpc \
+    $SPONSORED_FPC_ADDRESS SponsoredFPC \
+    --salt 0
+```
+
+Finally, deploy your account:
+
+```bash
+aztec-wallet deploy-account \
+    --node-url $NODE_URL \
+    --from my-wallet \
+    --payment method=fpc-sponsored,fpc=contracts:sponsoredfpc \
+    --register-class
+```
+
+:::note
+The first transaction will take longer as it downloads proving keys. If you see `Timeout awaiting isMined`, the transaction is still processing - this is normal on testnet.
+:::
+
+### Step 3: Deploy and interact with contracts
+
+Deploy a token contract as an example:
+
+```bash
+aztec-wallet deploy \
+    --node-url $NODE_URL \
+    --from accounts:my-wallet \
+    --payment method=fpc-sponsored,fpc=contracts:sponsoredfpc \
+    --alias token \
+    TokenContract \
+    --args accounts:my-wallet Token TOK 18 --no-wait
+```
+
+You can check the transaction status on [aztecscan](https://aztecscan.xyz) or [aztecexplorer](https://aztecexplorer.xyz).
+
+Interact with your deployed contract:
+
+```bash
+aztec-wallet send mint_to_private \
+    --node-url $NODE_URL \
+    --from accounts:my-wallet \
+    --payment method=fpc-sponsored,fpc=contracts:sponsoredfpc \
+    --contract-address token \
+    --args accounts:my-wallet 10
+```
+
+## Migrating from Sandbox to Testnet
+
+If you have an existing app running on sandbox, here's how to migrate it to testnet:
+
+### 1. Connect to Testnet Node
+
+Instead of running a local sandbox, connect to the testnet node:
+
+```sh
+export NODE_URL=https://aztec-testnet-fullnode.zkv.xyz
+```
+
+When running `aztec-wallet` commands, include the node URL:
+
+```sh
+aztec-wallet create-account -a main --register-only --node-url $NODE_URL
+```
+
+### 2. Initialize PXE for Testnet
+
+You can connect to testnet directly from your app using AztecJS:
+
+In the browser:
+
+```javascript
+import { createPXE } from "@aztec/pxe/client/lazy";
+```
+
+In Node.js:
+
+```javascript
+import { createPXE } from "@aztec/pxe/server";
+```
+
+Then initialize with testnet configuration:
+
+```javascript
+import { createAztecNodeClient } from "@aztec/aztec.js";
+import { getPXEConfig } from "@aztec/pxe/server";
+import { createStore } from "@aztec/kv-store/lmdb";
+
+const NODE_URL = "https://aztec-testnet-fullnode.zkv.xyz";
+const node = createAztecNodeClient(NODE_URL);
+const l1Contracts = await node.getL1ContractAddresses();
+const config = getPXEConfig();
+const fullConfig = { ...config, l1Contracts };
+
+const store = await createStore("pxe1", {
+  dataDirectory: "store",
+  dataStoreMapSizeKB: 1e6,
+});
+
+const pxe = await createPXE(node, fullConfig, { store });
+```
+
+### 3. Handle Fees on Testnet
+
+Unlike sandbox, testnet requires fee payment. You have three options:
+
+1. **User pays their own fees** - Send them tokens or direct them to the faucet
+2. **Your contract sponsors fees** - Deploy a fee-paying contract
+3. **Use the canonical sponsored FPC** - Recommended for getting started
+
+Example using the sponsored FPC:
+
+```javascript
+const receiptForBob = await bananaCoin
+  .withWallet(bobWallet)
+  .methods.transfer(alice, amountTransferToAlice)
+  .send({ fee: { paymentMethod: sponsoredPaymentMethod } })
+  .wait();
+```
+
+### 4. Important Migration Considerations
+
+- **Register all contracts**: Including account contracts and the sponsored FPC in the PXE
+- **No test accounts**: You'll need to deploy accounts manually
+- **Longer transaction times**: Handle timeouts gracefully - transactions may still succeed
+- **L1-L2 messaging delays**:
+  - L1→L2: Wait ~1.5-2 minutes (vs 2 blocks on sandbox)
+  - L2→L1: Wait ~30 minutes for finalization (vs immediate on sandbox)
+
+## Key Considerations When Using Testnet
+
+### Handling Transaction Timeouts
+
+Testnet transactions take longer than sandbox. Handle timeouts gracefully:
+
+```javascript
+try {
+  const receipt = await tx.wait();
+} catch (error) {
+  if (error.message.includes("Timeout awaiting isMined")) {
+    console.log("Transaction sent but still being mined");
+    // Check block explorer for status
+  }
+}
+```
+
+### Environment Detection
+
+Detect which environment your code is running against:
+
+```javascript
+const isTestnet = process.env.NODE_URL?.includes("testnet");
+const nodeUrl = process.env.NODE_URL || "http://localhost:8080";
+```
+
+## Next Steps
+
+- **New to Aztec?** Start with the sandbox tab for faster development
+- **Ready for production testing?** Continue using testnet
+- **Learn more:** Check out our [tutorials](./docs/tutorials/contract_tutorials/counter_contract.md)
+- **Explore:** Visit [Aztec Playground](https://play.aztec.network/)
+
+## Additional Resources
+
+- [Fee payment guide](./docs/guides/aztec-js/how_to_pay_fees.md)
+- [Running a node](../the_aztec_network/index.md)
+- [Block explorers](https://aztecscan.xyz)
+
+</TabItem>
+</Tabs>

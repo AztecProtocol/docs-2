@@ -16,3 +16,18 @@ div.card-container {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* Better spacing for callouts and code blocks */
+.vocs_Callout {
+  margin: 24px 0 !important;
+}
+
+pre {
+  margin: 24px 0 !important;
+}
+
+/* Spacing between adjacent code blocks and callouts */
+.vocs_Callout + pre,
+pre + .vocs_Callout {
+  margin-top: 24px !important;
+}
