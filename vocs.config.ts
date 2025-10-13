@@ -83,72 +83,58 @@ export default defineConfig({
               link: '/aztec-nr/language-description/global-variables'
             },
             {
-              text: '5.4.8 Public State Variables',
-              link: '/aztec-nr/language-description/public-state-variables'
+              text: '5.4.8 State Variables',
+              link: '/aztec-nr/language-description/state-variables'
             },
             {
-              text: '5.4.9 Private State Variables',
-              collapsed: true,
-              items: [
-                {
-                  text: 'Notes Types',
-                  link: '/aztec-nr/language-description/private-state-variables/notes-types'
-                },
-                {
-                  text: 'Partial Notes',
-                  link: '/aztec-nr/language-description/private-state-variables/partial-notes'
-                },
-                {
-                  text: 'Declaring Private State Variables',
-                  link: '/aztec-nr/language-description/private-state-variables/declaring-private-state-variables'
-                }
-              ]
+              text: '5.4.9 Events and Logs',
+              link: '/aztec-nr/language-description/events-and-logs'
             },
             {
-              text: '5.4.10 Events',
-              link: '/aztec-nr/language-description/events'
-            },
-            {
-              text: '5.4.11 Logs',
-              link: '/aztec-nr/language-description/logs'
-            },
-            {
-              text: '5.4.12 Private Messaging',
+              text: '5.4.10 Private Messaging',
               link: '/aztec-nr/language-description/private-messaging'
             },
             {
-              text: '5.4.13 L1<>L2 Messaging',
+              text: '5.4.11 L1<>L2 Messaging',
               link: '/aztec-nr/language-description/l1-l2-messaging'
             },
             {
-              text: '5.4.14 Cross-chain Interaction',
-              link: '/aztec-nr/language-description/cross-chain-interaction'
+              text: '5.4.12 Cross-chain Interactions',
+              link: '/aztec-nr/language-description/cross-chain-interactions'
             },
             {
-              text: '5.4.15 Macros',
+              text: '5.4.13 Macros',
               link: '/aztec-nr/language-description/macros'
             },
             {
-              text: '5.4.16 Protocol Oracles',
+              text: '5.4.14 Protocol Oracles',
               link: '/aztec-nr/language-description/protocol-oracles'
             },
             {
-              text: '5.4.17 Libraries',
+              text: '5.4.15 Libraries',
               link: '/aztec-nr/language-description/libraries'
             },
             {
-              text: '5.4.18 Upgradeable Contracts',
+              text: '5.4.16 Upgradeable Contracts',
               link: '/aztec-nr/language-description/upgradeable-contracts'
+            },
+            {
+              text: '5.4.17 Error Handling',
+              link: '/aztec-nr/language-description/error-handling'
+            },
+            {
+              text: '5.4.18 CoSnarks',
+              link: '/aztec-nr/language-description/cosnarks'
             }
           ]
         },
         {
           text: '5.5 Compiling',
-          link: '/aztec-nr/compiling',
+          link: '/aztec-nr/compile',
         },
         {
-          text: '5.6 Testing and Profiling',
-          link: '/aztec-nr/testing-and-profiling',
+          text: '5.6 Testing',
+          link: '/aztec-nr/testing',
         },
         {
           text: '5.7 Debugging',
@@ -170,16 +156,10 @@ export default defineConfig({
         },
         {
           text: '5.10 Common Patterns',
-          collapsed: true,
-          items: [
-            {
-              text: '5.10.1 Mutating Private State in Private Functions',
-              link: '/aztec-nr/common-patterns/mutating-private-state-in-private-functions'
-            }
-          ]
+          link: '/aztec-nr/common-patterns',
         },
         {
-          text: '5.11 Optimizations and Gas',
+          text: '5.11 Optimizations, Gas and Profiling',
           collapsed: true,
           items: [
             {
@@ -187,12 +167,16 @@ export default defineConfig({
               link: '/aztec-nr/optimizations-and-gas/gas'
             },
             {
-              text: '5.11.2 Optimizing Private Functions',
-              link: '/aztec-nr/optimizations-and-gas/optimizing-private-functions'
+              text: '5.11.1 Profiling',
+              link: '/aztec-nr/optimizations-and-gas/profiling'
             },
             {
-              text: '5.11.3 Reducing Gas Costs',
-              link: '/aztec-nr/optimizations-and-gas/reducing-gas-costs'
+              text: '5.11.2 Optimizing Functions',
+              link: '/aztec-nr/optimizations-and-gas/optimizing-functions'
+            },
+            {
+              text: '5.11.4 Chosing Numeric Types',
+              link: '/aztec-nr/optimizations-and-gas/numeric-types'
             }
           ]
         },
