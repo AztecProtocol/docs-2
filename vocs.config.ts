@@ -1,7 +1,17 @@
 import { defineConfig } from 'vocs'
+import * as path from 'path'
+import { remarkIncludeCode } from './src/plugins/remark-include-code'
 
 export default defineConfig({
   title: 'Aztec Docs',
+  markdown: {
+    remarkPlugins: [
+      [remarkIncludeCode, {
+        rootDir: path.join(__dirname, 'submodules/aztec-packages'),
+        commitTag: process.env.COMMIT_TAG
+      }]
+    ]
+  },
   topNav: [
     { text: 'Documentation', link: '/' },
     { text: 'Run a Node', link: '/run-a-node' },
