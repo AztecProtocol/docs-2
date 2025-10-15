@@ -4,7 +4,6 @@ import { remarkIncludeCode } from './src/plugins/remark-include-code'
 
 export default defineConfig({
   title: 'Aztec Docs',
-  basePath: process.env.VERSION_PATH || '/',
   markdown: {
     remarkPlugins: [
       [remarkIncludeCode, {
