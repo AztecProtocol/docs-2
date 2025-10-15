@@ -6,9 +6,7 @@ console.log('VERSION_PATH:', process.env.VERSION_PATH)
 
 export default defineConfig({
   title: 'Aztec Docs',
-  vite: {
-    base: process.env.VERSION_PATH || '/',
-  },
+  basePath: process.env.VERSION_PATH || '/',
   markdown: {
     remarkPlugins: [
       [remarkIncludeCode, {
