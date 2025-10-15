@@ -8,6 +8,13 @@
   publish = "docs/dist"
 
 # Build settings for the v0.0.1-test branch
+# Try both the specific branch context AND the branch name with dots
+[context."v0.0.1-test"]
+  command = "echo '🔍 VERSION_PATH:' $VERSION_PATH && yarn build"
+  [context."v0.0.1-test".environment]
+    VERSION_PATH = "/v0.0.1-test/"
+
+# Fallback: Also try the hyphenated version
 [context.v0-0-1-test]
   command = "echo '🔍 VERSION_PATH:' $VERSION_PATH && yarn build"
   [context.v0-0-1-test.environment]
