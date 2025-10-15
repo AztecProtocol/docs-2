@@ -4,12 +4,12 @@
 
 # The [build] settings apply to all contexts unless overridden.
 [build]
-  command = "yarn build"
+  command = "echo '🔍 VERSION_PATH:' ${VERSION_PATH:-'(not set)'} && yarn build"
   publish = "docs/dist"
 
 # Build settings for the v0.0.1-test branch
 [context.v0-0-1-test]
-  command = "yarn build"
+  command = "echo '🔍 VERSION_PATH:' $VERSION_PATH && yarn build"
   [context.v0-0-1-test.environment]
     VERSION_PATH = "/v0.0.1-test/"
 
