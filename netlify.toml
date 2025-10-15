@@ -8,9 +8,10 @@
   publish = "docs/dist"
 
 # Build settings for the v0.0.1-test branch
-[context."v0.0.1-test"]
-  command = "yarn build"
-  [context."v0.0.1-test".environment]
+# Netlify converts dots in branch names to hyphens for context names
+[context.v0-0-1-test]
+  command = "VERSION_PATH=/v0.0.1-test/ yarn build"
+  [context.v0-0-1-test.environment]
     VERSION_PATH = "/v0.0.1-test/"
 
 # === Redirects and Rewrites ===
@@ -21,6 +22,3 @@
   to = "https://v0-0-1-test--aztec-docs-2.netlify.app/v0.0.1-test/:splat"
   status = 200
   force = true
-  
-  [redirects.headers]
-    X-Proxied-Version = "v0.0.1-test"
