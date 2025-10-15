@@ -4,30 +4,11 @@
 
 # The [build] settings apply to all contexts unless overridden.
 [build]
-  command = "echo '🔍 VERSION_PATH:' ${VERSION_PATH:-'(not set)'} && yarn build"
   publish = "docs/dist"
 
 # Build settings for the v0.0.1-test branch
 # Try both the specific branch context AND the branch name with dots
 [context."v0.0.1-test"]
-  command = "echo '🔍 VERSION_PATH:' $VERSION_PATH && yarn build"
   [context."v0.0.1-test".environment]
     VERSION_PATH = "/v0.0.1-test/"
 
-# Fallback: Also try the hyphenated version
-[context.v0-0-1-test]
-  command = "echo '🔍 VERSION_PATH:' $VERSION_PATH && yarn build"
-  [context.v0-0-1-test.environment]
-    VERSION_PATH = "/v0.0.1-test/"
-
-# === Redirects and Rewrites ===
-# Rules are processed from top to bottom, with the first matching rule taking precedence.
-# This is a proxy rewrite, which fetches content from another site while keeping the URL in the browser.
-[[redirects]]
-  from = "/v0.0.1-test/*"
-  to = "https://v0-0-1-test--aztec-docs-2.netlify.app/v0.0.1-test/:splat"
-  status = 200
-  force = true
-  
-  [redirects.headers]
-    X-Proxied-Version = "v0.0.1-test"
