@@ -19,7 +19,7 @@
 # This is a proxy rewrite, which fetches content from another site while keeping the URL in the browser.
 [[redirects]]
   from = "/v0.0.1-test/*"
-  to = "https://v0-0-1-test--aztec-docs-2.netlify.app/v0.0.1-test/:splat"
+  to = "https://v0-0-1-test--aztec-docs-2.netlify.app/:splat"
   status = 200
   force = true
   
