@@ -13,9 +13,12 @@ export function CardContainer({ children }: { children: React.ReactNode }) {
   )
 }
 
-export function Card({ link, children }: { link: string; children: React.ReactNode }) {
+export function Card({ link, children, ...props }: { link: string; children: React.ReactNode; [key: string]: any }) {
+  // Filter out non-standard HTML attributes like hideExternalIcon
+  const { hideExternalIcon, ...validProps } = props
+
   return (
-    <a href={link} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+    <a href={link} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }} {...validProps}>
       <div
         className="card-hover"
         style={{

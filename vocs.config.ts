@@ -1,7 +1,17 @@
 import { defineConfig } from 'vocs'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
 
 export default defineConfig({
   title: 'Aztec Docs',
+  markdown: {
+    rehypePlugins: [
+      [rehypeKatex, { strict: false }]
+    ],
+    remarkPlugins: [
+      remarkMath
+    ]
+  },
   topNav: [
     { text: 'Documentation', link: '/' },
     { text: 'Run a Node', link: '/run-a-node' },
@@ -21,8 +31,55 @@ export default defineConfig({
       link: '/aztec-nr/aztec-vs-ethereum',
     },
     {
-      text: '4. Addresses & Keys',
-      link: '/addresses-and-keys',
+      text: '4. Protocol Architecture',
+      link: '/protocol-architecture',
+      collapsed: true,
+      items: [
+        {
+          text: '4.1 Overview',
+          link: '/protocol-architecture/overview',
+        },
+        {
+          text: '4.2 Addresses & Keys',
+          link: '/protocol-architecture/addresses-and-keys',
+        },
+        {
+          text: '4.3 Wallets',
+          link: '/protocol-architecture/wallets',
+        },
+        {
+          text: '4.4 Call Types',
+          link: '/protocol-architecture/call-types',
+        },
+        {
+          text: '4.5 PXE & ACIR Simulator',
+          link: '/protocol-architecture/pxe-and-acir-simulator',
+        },
+        {
+          text: '4.6 Transactions',
+          link: '/protocol-architecture/transactions',
+        },
+        {
+          text: '4.7 Fees',
+          link: '/protocol-architecture/fees',
+        },
+        {
+          text: '4.8 Nullifier Merkle Tree',
+          link: '/protocol-architecture/nullifier-merkle-tree',
+        },
+        {
+          text: '4.9 Note Discovery',
+          link: '/protocol-architecture/note-discovery',
+        },
+        {
+          text: '4.10 Circuits',
+          link: '/protocol-architecture/circuits',
+        },
+        {
+          text: '4.11 Storage Slots',
+          link: '/protocol-architecture/storage-slots',
+        }
+      ],
     },
     {
       text: '5. Aztec.nr',
@@ -34,6 +91,7 @@ export default defineConfig({
         },
         {
           text: '5.2 Introduction to Private Smart Contracts',
+          link: '/aztec-nr/introduction-to-private-smart-contracts',
           collapsed: true,
           items: [
             {
@@ -52,6 +110,7 @@ export default defineConfig({
         },
         {
           text: '5.4 Language Description',
+          link: '/aztec-nr/language-description',
           collapsed: true,
           items: [
             {
@@ -146,6 +205,7 @@ export default defineConfig({
         },
         {
           text: '5.9 Advanced Features',
+          link: '/aztec-nr/advanced-features',
           collapsed: true,
           items: [
             {
@@ -160,6 +220,7 @@ export default defineConfig({
         },
         {
           text: '5.11 Optimizations, Gas and Profiling',
+          link: '/aztec-nr/optimizations-and-gas',
           collapsed: true,
           items: [
             {
@@ -283,6 +344,7 @@ export default defineConfig({
       },
       {
         text: '3. Guides',
+        link: '/run-a-node/guides',
         collapsed: false,
         items: [
           {
@@ -297,6 +359,7 @@ export default defineConfig({
       },
       {
         text: '4. Reference',
+        link: '/run-a-node/reference',
         collapsed: false,
         items: [
           {
