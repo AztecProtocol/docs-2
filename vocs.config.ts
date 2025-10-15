@@ -2,8 +2,6 @@ import { defineConfig } from 'vocs'
 import * as path from 'path'
 import { remarkIncludeCode } from './src/plugins/remark-include-code'
 
-console.log('VERSION_PATH:', process.env.VERSION_PATH)
-
 export default defineConfig({
   title: 'Aztec Docs',
   basePath: process.env.VERSION_PATH || '/',
