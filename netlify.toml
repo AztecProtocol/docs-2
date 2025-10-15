@@ -1,0 +1,17 @@
+# ========================
+# Main documentation site: docs.aztec.network
+# ========================
+
+# The [build] settings apply to all contexts unless overridden.
+[build]
+  command = "yarn build"
+  publish = "docs/dist"
+
+# === Redirects and Rewrites ===
+# Rules are processed from top to bottom, with the first matching rule taking precedence.
+# This is a proxy rewrite, which fetches content from another site while keeping the URL in the browser.
+[[redirects]]
+  from = "/v0.0.1-test/*"
+  to = "https://v0-0-1-test--aztec-docs-2.netlify.app/v0.0.1-test/:splat" # replace this url with the branch deployment url
+  status = 200
+  force = true

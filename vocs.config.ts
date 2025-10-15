@@ -1,6 +1,8 @@
 import { defineConfig } from 'vocs'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
+import * as path from 'path'
+import { remarkIncludeCode } from './src/plugins/remark-include-code'
 
 export default defineConfig({
   title: 'Aztec Docs',
@@ -9,7 +11,11 @@ export default defineConfig({
       [rehypeKatex, { strict: false }]
     ],
     remarkPlugins: [
-      remarkMath
+      remarkMath,
+      [remarkIncludeCode, {
+        rootDir: path.join(__dirname, 'submodules/aztec-packages'),
+        commitTag: process.env.COMMIT_TAG
+      }]
     ]
   },
   topNav: [
@@ -344,7 +350,6 @@ export default defineConfig({
       },
       {
         text: '3. Guides',
-        link: '/run-a-node/guides',
         collapsed: false,
         items: [
           {
@@ -359,7 +364,6 @@ export default defineConfig({
       },
       {
         text: '4. Reference',
-        link: '/run-a-node/reference',
         collapsed: false,
         items: [
           {

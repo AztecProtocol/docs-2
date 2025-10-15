@@ -4,11 +4,11 @@ import { CardContainer, Card, CardHeader, CardBody } from '../../components/Card
 
 Aztec is a privacy-first L2 rollup scaling solution on Ethereum.
 
-![Aztec Overview](/Aztec_overview.png)
+![Aztec Overview](../public/Aztec_overview.png)
 
 ## High level view
 
-![High level](/aztec-high-level.png)
+![High level](../public/aztec-high-level.png)
 
 1. A user interacts with Aztec through Aztec.js (like web3js or ethersjs)
 2. Private functions are executed in the PXE, which is client-side
@@ -38,13 +38,13 @@ The PXE is unaware of the Public VM. And the Public VM is unaware of the PXE. Th
 
 ## Private and public state
 
-Private state works with UTXOs, which are chunks of data that we call notes. To keep things private, notes are stored in an [append-only UTXO tree](./advanced/storage/indexed_merkle_tree.mdx), and a nullifier is created when notes are invalidated (aka deleted). Nullifiers are stored in their own [nullifier tree](./advanced/storage/indexed_merkle_tree.mdx).
+Private state works with UTXOs, which are chunks of data that we call notes. To keep things private, notes are stored in an append-only UTXO tree, and a nullifier is created when notes are invalidated (aka deleted). Nullifiers are stored in their own nullifier tree.
 
 Public state works similarly to other chains like Ethereum, behaving like a public ledger. Public data is stored in a public data tree.
 
 ![Public vs private state](@site/static/img/public-and-private-state-diagram.png)
 
-Aztec [smart contract](./smart_contracts/contract_structure.md) developers should keep in mind that different data types are used when manipulating private or public state. Working with private state is creating commitments and nullifiers to state, whereas working with public state is directly updating state.
+Aztec smart contract developers should keep in mind that different data types are used when manipulating private or public state. Working with private state is creating commitments and nullifiers to state, whereas working with public state is directly updating state.
 
 ## Accounts and keys
 
@@ -54,7 +54,7 @@ Every account in Aztec is a smart contract (account abstraction). This allows im
 
 Developers can write their own account contract to define the rules by which user transactions are authorized and paid for, as well as how user keys are managed.
 
-Learn more about account contracts [here](./accounts/index.md).
+Learn more about account contracts in the documentation.
 
 ### Key pairs
 
@@ -75,7 +75,7 @@ Noir is a zero-knowledge domain specific language used for writing smart contrac
 ### Start coding
 
 <div>
- <Card  link='/developers/getting_started_on_sandbox'>
+ <Card  link='./getting-started'>
     <CardHeader>
       <h3>Developer Getting Started Guide</h3>
     </CardHeader>
@@ -90,7 +90,7 @@ Noir is a zero-knowledge domain specific language used for writing smart contrac
 Explore the Concepts for a deeper understanding into the components that make up Aztec:
 
 <CardContainer>
-  <Card link='/developers/docs/concepts/accounts'>
+  <Card link='./concepts#accounts'>
     <CardHeader>
       <h3>Accounts</h3>
     </CardHeader>
@@ -99,7 +99,7 @@ Explore the Concepts for a deeper understanding into the components that make up
     </CardBody>
   </Card>
 
-  <Card  link='/developers/docs/concepts/pxe'>
+  <Card  link='./concepts#pxe'>
     <CardHeader>
       <h3>PXE (pronounced 'pixie')</h3>
     </CardHeader>
@@ -108,7 +108,7 @@ Explore the Concepts for a deeper understanding into the components that make up
     </CardBody>
   </Card>
 
-   <Card  link='/developers/docs/concepts/storage/state_model'>
+   <Card  link='./concepts#state-model'>
     <CardHeader>
       <h3>State model</h3>
     </CardHeader>
@@ -117,7 +117,7 @@ Explore the Concepts for a deeper understanding into the components that make up
     </CardBody>
   </Card>
 
-  <Card  link='/developers/docs/concepts/storage'>
+  <Card  link='./concepts#storage'>
     <CardHeader>
       <h3>Storage</h3>
     </CardHeader>
@@ -126,7 +126,7 @@ Explore the Concepts for a deeper understanding into the components that make up
     </CardBody>
   </Card>
 
-  <Card  link='/developers/docs/concepts/wallets'>
+  <Card  link='./concepts#wallets'>
     <CardHeader>
       <h3>Wallets</h3>
     </CardHeader>
@@ -135,7 +135,7 @@ Explore the Concepts for a deeper understanding into the components that make up
     </CardBody>
   </Card>
 
-  <Card  link='/developers/docs/concepts/advanced/circuits'>
+  <Card  link='./concepts#circuits'>
     <CardHeader>
       <h3>Protocol Circuits</h3>
     </CardHeader>
