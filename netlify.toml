@@ -7,10 +7,3 @@
   command = "yarn build"
   publish = "docs/dist"
 
-
-# Rewrite all other paths to your base path
-[[redirects]]
-  from = "/*"
-  to = "/v0.0.1-test/:splat"
-  status = 200
-
