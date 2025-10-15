@@ -9,9 +9,9 @@
 
 # Build settings for the v0.0.1-test branch
 # Netlify converts dots in branch names to hyphens for context names
-[context.v0-0-1-test]
-  command = "VERSION_PATH=/v0.0.1-test/ yarn build"
-  [context.v0-0-1-test.environment]
+[context."v0.0.1-test"]
+  command = "yarn build"
+  [context."v0.0.1-test".environment]
     VERSION_PATH = "/v0.0.1-test/"
 
 # === Redirects and Rewrites ===
