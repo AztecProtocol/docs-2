@@ -7,16 +7,10 @@
   command = "yarn build"
   publish = "docs/dist"
 
-# Redirect requests from the root to your base path
-[[redirects]]
-  from = "/"
-  to = "/docs"
-  status = 301
-  force = true
 
 # Rewrite all other paths to your base path
 [[redirects]]
-  from = "/docs/*"
-  to = "/docs/:splat"
+  from = "/*"
+  to = "/v0.0.1-test/:splat"
   status = 200
 
