@@ -58,10 +58,6 @@ export default defineConfig({
           link: '/protocol-architecture/call-types',
         },
         {
-          text: '4.5 PXE & ACIR Simulator',
-          link: '/protocol-architecture/pxe-and-acir-simulator',
-        },
-        {
           text: '4.6 Transactions',
           link: '/protocol-architecture/transactions',
         },
@@ -190,6 +186,10 @@ export default defineConfig({
             {
               text: '5.4.18 CoSnarks',
               link: '/aztec-nr/language-description/cosnarks'
+            },
+            {
+              text: '5.4.19 Authentication Witness',
+              link: '/aztec-nr/language-description/authentication-witness'
             }
           ]
         },

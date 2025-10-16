@@ -15,7 +15,7 @@ Before learning how to create Aztec smart contracts, we must first install some 
 
 - [Docker](https://docs.docker.com/get-docker/)
 
-## Install Aztec Tools
+## Install Aztec Tools
 
 1. Docker needs to be running in order to install the sandbox.
 
