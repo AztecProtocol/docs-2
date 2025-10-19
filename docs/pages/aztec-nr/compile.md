@@ -5,7 +5,7 @@
 3. Unravelling Macros
 4. Contract Artifacts
 5. Structure of an Artifact
-5. Common Errors
+6. Common Errors
 
 This guide shows you how to compile your Aztec contracts into artifacts ready for deployment and interaction.
 
@@ -36,6 +36,7 @@ aztec-postprocess-contract
 ```
 
 This step:
+
 - Transpiles functions for the Aztec VM
 - Generates verification keys for private functions
 - Caches keys for faster subsequent compilations

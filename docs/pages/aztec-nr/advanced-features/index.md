@@ -9,6 +9,7 @@ This section covers advanced capabilities in Aztec.nr for developers who want to
 ## Topics
 
 ### Custom Notes
+
 Learn how to create custom note types for specialized privacy requirements. Notes are the fundamental building blocks of private state in Aztec.
 
 [Learn about Custom Notes →](./custom-notes)

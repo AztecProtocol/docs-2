@@ -9,9 +9,11 @@ Performance and cost optimization are critical for building efficient Aztec appl
 ## Topics
 
 ### Understanding Costs
+
 - **[Gas](./gas)** - How gas works in Aztec and fee mechanisms
 
 ### Optimization Techniques
+
 - **[Profiling](./profiling)** - Tools and techniques for profiling contract performance
 - **[Optimizing Functions](./optimizing-functions)** - Best practices for writing efficient functions
 - **[Choosing Numeric Types](./numeric-types)** - Selecting the right numeric types for gas efficiency

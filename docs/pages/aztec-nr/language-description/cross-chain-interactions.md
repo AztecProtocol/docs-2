@@ -21,11 +21,11 @@
 
 Use the `Inbox` contract to send messages from L1 to L2. Call `sendL2Message` with these parameters:
 
-| Parameter   | Type     | Description |
-|-------------|----------|-------------|
-| `actor` | `L2Actor` | Your L2 contract address and rollup version |
+| Parameter     | Type      | Description                                             |
+| ------------- | --------- | ------------------------------------------------------- |
+| `actor`       | `L2Actor` | Your L2 contract address and rollup version             |
 | `contentHash` | `bytes32` | Hash of your message content (use `Hash.sha256ToField`) |
-| `secretHash` | `bytes32` | Hash of a secret for message consumption |
+| `secretHash`  | `bytes32` | Hash of a secret for message consumption                |
 
 In your Solidity contract:
 

@@ -83,7 +83,7 @@ aztec-wallet send transfer --from test0 --to test0 --amount 0
 // In vite.config.ts or similar
 export default {
   define: {
-    "process.env.BB_WASM_PATH": JSON.stringify("https://debug.wasm.url"),
+    'process.env.BB_WASM_PATH': JSON.stringify('https://debug.wasm.url'),
   },
 };
 ```
@@ -91,12 +91,12 @@ export default {
 ### Profile Transactions
 
 ```javascript
-import { serializePrivateExecutionSteps } from "@aztec/stdlib";
+import { serializePrivateExecutionSteps } from '@aztec/stdlib';
 
 // Profile the transaction
 const profileTx = await contract.methods
   .myMethod(param1, param2)
-  .profile({ profileMode: "execution-steps" });
+  .profile({ profileMode: 'execution-steps' });
 
 // Serialize for debugging
 const ivcMessagePack = serializePrivateExecutionSteps(profileTx.executionSteps);
@@ -104,9 +104,9 @@ const ivcMessagePack = serializePrivateExecutionSteps(profileTx.executionSteps);
 // Download debug file
 const blob = new Blob([ivcMessagePack]);
 const url = URL.createObjectURL(blob);
-const link = document.createElement("a");
+const link = document.createElement('a');
 link.href = url;
-link.download = "debug-steps.msgpack";
+link.download = 'debug-steps.msgpack';
 link.click();
 ```
 

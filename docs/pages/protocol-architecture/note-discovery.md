@@ -1,6 +1,5 @@
 # Note Discovery
 
-
 Note discovery refers to the process of a user identifying and decrypting the [encrypted notes](../../storage/notes.md) that belong to them.
 
 ## Existing solutions

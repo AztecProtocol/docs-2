@@ -149,7 +149,7 @@ A visual aid for insertion is presented below:
 
 5. Add a new value $v=50$
 
-  img={require("@site/static/img/indexed-merkle-tree/index-merkle-tree-5.png")}
+img={require("@site/static/img/indexed-merkle-tree/index-merkle-tree-5.png")}
 />
 
 By studying the transitions between each diagram you can see how the pointers are updated between each insertion.

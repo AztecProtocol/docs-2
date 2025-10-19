@@ -1,4 +1,4 @@
-import { Tabs, TabItem } from '../../components/Tabs'
+import { Tabs, TabItem } from '../../components/Tabs';
 
 # Getting Started
 
@@ -122,6 +122,7 @@ aztec-wallet deploy TokenContractArtifact --from accounts:test0 --args accounts:
 ```
 
 This takes:
+
 - the contract artifact as the argument, which is `TokenContractArtifact`
 - the deployer account, which we used `test0`
 - the args that the contract constructor takes, which is the `admin` (`accounts:test0`), `name` (`TestToken`), `symbol` (`TST`), and `decimals` (`18`).
@@ -143,6 +144,7 @@ aztec-wallet send mint_to_public --from accounts:test0 --contract-address contra
 ```
 
 This takes:
+
 - the function name as the argument, which is `mint_to_public`
 - the `from` account (caller) which is `accounts:test0`
 - the contract address, which is aliased as `contracts:testtoken` (or simply `testtoken`)
@@ -308,30 +310,30 @@ You can connect to testnet directly from your app using AztecJS:
 In the browser:
 
 ```javascript
-import { createPXE } from "@aztec/pxe/client/lazy";
+import { createPXE } from '@aztec/pxe/client/lazy';
 ```
 
 In Node.js:
 
 ```javascript
-import { createPXE } from "@aztec/pxe/server";
+import { createPXE } from '@aztec/pxe/server';
 ```
 
 Then initialize with testnet configuration:
 
 ```javascript
-import { createAztecNodeClient } from "@aztec/aztec.js";
-import { getPXEConfig } from "@aztec/pxe/server";
-import { createStore } from "@aztec/kv-store/lmdb";
+import { createAztecNodeClient } from '@aztec/aztec.js';
+import { getPXEConfig } from '@aztec/pxe/server';
+import { createStore } from '@aztec/kv-store/lmdb';
 
-const NODE_URL = "https://aztec-testnet-fullnode.zkv.xyz";
+const NODE_URL = 'https://aztec-testnet-fullnode.zkv.xyz';
 const node = createAztecNodeClient(NODE_URL);
 const l1Contracts = await node.getL1ContractAddresses();
 const config = getPXEConfig();
 const fullConfig = { ...config, l1Contracts };
 
-const store = await createStore("pxe1", {
-  dataDirectory: "store",
+const store = await createStore('pxe1', {
+  dataDirectory: 'store',
   dataStoreMapSizeKB: 1e6,
 });
 
@@ -375,8 +377,8 @@ Testnet transactions take longer than sandbox. Handle timeouts gracefully:
 try {
   const receipt = await tx.wait();
 } catch (error) {
-  if (error.message.includes("Timeout awaiting isMined")) {
-    console.log("Transaction sent but still being mined");
+  if (error.message.includes('Timeout awaiting isMined')) {
+    console.log('Transaction sent but still being mined');
     // Check block explorer for status
   }
 }
@@ -387,8 +389,8 @@ try {
 Detect which environment your code is running against:
 
 ```javascript
-const isTestnet = process.env.NODE_URL?.includes("testnet");
-const nodeUrl = process.env.NODE_URL || "http://localhost:8080";
+const isTestnet = process.env.NODE_URL?.includes('testnet');
+const nodeUrl = process.env.NODE_URL || 'http://localhost:8080';
 ```
 
 ## Next Steps

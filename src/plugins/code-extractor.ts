@@ -38,7 +38,11 @@ function processHighlighting(codeSnippet: string, identifier: string): string {
     { regex: /this-will-error:([a-zA-Z0-9-._:]+)/, replacement: 'this-will-error' },
   ];
 
-  const processLine = (line: string, regex: RegExp, replacement: string): { line: string; mutated: boolean } => {
+  const processLine = (
+    line: string,
+    regex: RegExp,
+    replacement: string
+  ): { line: string; mutated: boolean } => {
     const match = line.match(regex);
     let mutated = false;
 
@@ -130,9 +134,7 @@ export function extractCodeSnippet(filePath: string, identifier: string): CodeSn
         }
       } else {
         if (matchFound) {
-          throw new Error(
-            `Duplicate marker for identifier "${identifier}" in file "${filePath}"`
-          );
+          throw new Error(`Duplicate marker for identifier "${identifier}" in file "${filePath}"`);
         }
         matchFound = true;
         matchedLineNum = getLineNumberFromIndex(fileContent, match.index);
@@ -149,17 +151,11 @@ export function extractCodeSnippet(filePath: string, identifier: string): CodeSn
   // Validate that both start and end markers were found
   if (startMatch === null || endMatch === null) {
     if (startMatch === null && endMatch === null) {
-      throw new Error(
-        `Identifier "${identifier}" not found in file "${filePath}"`
-      );
+      throw new Error(`Identifier "${identifier}" not found in file "${filePath}"`);
     } else if (startMatch === null) {
-      throw new Error(
-        `Start marker "docs:start:${identifier}" not found in file "${filePath}"`
-      );
+      throw new Error(`Start marker "docs:start:${identifier}" not found in file "${filePath}"`);
     } else {
-      throw new Error(
-        `End marker "docs:end:${identifier}" not found in file "${filePath}"`
-      );
+      throw new Error(`End marker "docs:end:${identifier}" not found in file "${filePath}"`);
     }
   }
 

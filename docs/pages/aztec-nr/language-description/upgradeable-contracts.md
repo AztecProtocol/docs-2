@@ -2,13 +2,13 @@
 
 1. Immutability vs Upgradeability - tradeoffs
 2. Risks of Upgrading
-    - Storage slot contamination
-    - Bricking of state / notes
-    - Upgades are not immediate
-        - They're necessarily delayed.
-        - Don't rely on them to beat an attacker in a race.
+   - Storage slot contamination
+   - Bricking of state / notes
+   - Upgades are not immediate
+     - They're necessarily delayed.
+     - Don't rely on them to beat an attacker in a race.
 3. Upgrade
-    - Give details of the `upgrade` function in the ContractInstancePublisher
+   - Give details of the `upgrade` function in the ContractInstancePublisher
 
 For familiarity we've used terminology like "deploying a contract instance of a contract class". When considering how it works with contract upgrades it helps to be more specific.
 
@@ -86,12 +86,10 @@ Only deployed contract instances can upgrade or change its upgrade delay current
 ### Upgrade Process
 
 1. **Register New Implementation**
-
    - First, register the new contract class if it contains public functions
    - The new implementation must maintain state variable compatibility with the original contract
 
 2. **Perform Upgrade**
-
    - Call the update function with the new contract class ID
    - The contract's original class ID remains unchanged
    - The current class ID is updated to the new implementation
@@ -127,9 +125,7 @@ You'd upgrade it in aztec.js doing something similar to this:
 const contract = await UpdatableContract.deploy(wallet, ...args)
   .send()
   .deployed();
-const updatedContractClassId = (
-  await getContractClassFromArtifact(UpdatedContractArtifact)
-).id;
+const updatedContractClassId = (await getContractClassFromArtifact(UpdatedContractArtifact)).id;
 await contract.methods.update_to(updatedContractClassId).send().wait();
 ```
 
@@ -151,17 +147,14 @@ await RandomContract.at(address, wallet);
 ### Security Considerations
 
 1. **Access Control**
-
    - Implement proper access controls for upgrade functions
    - Consider customizing the upgrades delay for your needs using `set_update_delay`
 
 2. **State Compatibility**
-
    - Ensure new implementation is compatible with existing state
    - Maintain the same storage layout to prevent data corruption
 
 3. **Testing**
-
    - Test upgrades thoroughly in a development environment
    - Verify all existing functionality works with the new implementation
 

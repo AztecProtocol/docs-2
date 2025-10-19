@@ -1,14 +1,12 @@
 # Macros
 
-21. 
-    - AztecNr Macros
-        - nargo expand
-        - What they do
-        - Unravelling them
+21. - AztecNr Macros
+      - nargo expand
+      - What they do
+      - Unravelling them
     - Custom Macros
-        - Tooling and Debugging.
-        - See Noir Docs.
-
+      - Tooling and Debugging.
+      - See Noir Docs.
 
 ## All Aztec macros
 
@@ -25,4 +23,5 @@ It is also worth mentioning Noir's `unconstrained` function type [here (Noir doc
 - `#[storage]` - Defines contract storage
 
 ## Further reading
+
 [How do Aztec macros work?](../../concepts/smart_contracts/functions/function_transforms.md)

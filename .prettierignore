@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+.yarn/
+
+# Build outputs
+dist/
+build/
+.vocs/
+
+# Git
+.git/
+.husky/_/
+
+# Submodules
+submodules/
+
+# Lock files
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# Generated files
+*.min.js
+*.min.css
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+*.tmp
+.cache/
+
+# Coverage
+coverage/

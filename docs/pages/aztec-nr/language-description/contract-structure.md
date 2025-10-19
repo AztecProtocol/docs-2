@@ -1,12 +1,12 @@
 # Contract Structure
 
 1. High-level structure
-    - Imports
-    - Contract Scope
-    - State Variables
-    - Functions
-    - Events
-        - See the dedicated section below
+   - Imports
+   - Contract Scope
+   - State Variables
+   - Functions
+   - Events
+     - See the dedicated section below
 
 A contract is a collection of persistent state variables and [functions](./functions/index.md) which may manipulate these variables. Functions and state variables within a contract's scope are said to belong to that contract. A contract can only access and modify its own state. If a contract wishes to access or modify another contract's state, it must make a call to an external function of the other contract. For anything to happen on the Aztec network, an external function of a contract needs to be called.
 

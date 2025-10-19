@@ -1,24 +1,35 @@
-import React from 'react'
+import React from 'react';
 
 export function CardContainer({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: '32px',
-      margin: '32px 0'
-    }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '32px',
+        margin: '32px 0',
+      }}
+    >
       {children}
     </div>
-  )
+  );
 }
 
-export function Card({ link, children, ...props }: { link: string; children: React.ReactNode; [key: string]: any }) {
-  // Filter out non-standard HTML attributes like hideExternalIcon
-  const { hideExternalIcon, ...validProps } = props
+interface CardProps extends React.HTMLAttributes<HTMLElement> {
+  link: string;
+  children: React.ReactNode;
+  hideExternalIcon?: boolean;
+}
+
+export function Card({ link, children, hideExternalIcon: _hideExternalIcon, ...props }: CardProps) {
+  // _hideExternalIcon is intentionally destructured but not used to prevent it from being passed to DOM
 
   return (
-    <a href={link} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }} {...validProps}>
+    <a
+      href={link}
+      style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+      {...props}
+    >
       <div
         className="card-hover"
         style={{
@@ -26,19 +37,19 @@ export function Card({ link, children, ...props }: { link: string; children: Rea
           borderRadius: '8px',
           padding: '24px',
           height: '100%',
-          transition: 'border-color 0.2s'
+          transition: 'border-color 0.2s',
         }}
       >
         {children}
       </div>
     </a>
-  )
+  );
 }
 
 export function CardHeader({ children }: { children: React.ReactNode }) {
-  return <div style={{ marginBottom: '12px', fontWeight: 600 }}>{children}</div>
+  return <div style={{ marginBottom: '12px', fontWeight: 600 }}>{children}</div>;
 }
 
 export function CardBody({ children }: { children: React.ReactNode }) {
-  return <div style={{ color: 'var(--vocs-color_text2)', fontSize: '14px' }}>{children}</div>
+  return <div style={{ color: 'var(--vocs-color_text2)', fontSize: '14px' }}>{children}</div>;
 }

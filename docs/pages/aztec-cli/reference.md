@@ -1,2 +1,1 @@
 # Aztec CLI Reference
-

@@ -5,6 +5,7 @@
 ## Why do we need Aztec.nr?
 
 ## Design principles
+
     - (Example):
         - Make it hard to shoot yourself in the foot.
         - Make it clear when something is unsafe.

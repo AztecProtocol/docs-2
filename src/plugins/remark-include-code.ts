@@ -1,7 +1,7 @@
-import { visit } from 'unist-util-visit';
 import type { Root, Paragraph, Text, Code } from 'mdast';
 import type { Plugin } from 'unified';
-import * as path from 'path';
+import { visit } from 'unist-util-visit';
+
 import { extractCodeWithMetadata } from './code-extractor';
 
 interface IncludeCodeOptions {
