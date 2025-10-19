@@ -6,21 +6,25 @@
   "scripts": {
     "dev": "vocs dev",
     "build": "vocs build",
-    "preview": "vocs preview"
+    "preview": "vocs preview",
+    "prepare": "husky"
   },
   "dependencies": {
     "react": "latest",
     "react-dom": "latest",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
-    "vocs": "latest",
-    "unist-util-visit": "^5.0.0"
+    "unist-util-visit": "^5.0.0",
+    "vocs": "latest"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@types/mdast": "^4.0.3",
     "@types/node": "^20.11.16",
     "@types/react": "latest",
     "@types/unist": "^3.0.2",
+    "husky": "^9.1.7",
     "typescript": "latest"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
