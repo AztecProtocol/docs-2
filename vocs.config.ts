@@ -39,7 +39,7 @@ export default defineConfig({
     {
       text: '4. Protocol Architecture',
       link: '/protocol-architecture',
-      collapsed: true,
+      collapsed: false,
       items: [
         {
           text: '4.1 Overview',
