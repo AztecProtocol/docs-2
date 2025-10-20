@@ -68,26 +68,6 @@ In the end a siloed note hash is computed in the kernel.
 Some of the syntax below is a little butchered to make it easier to follow variables without the full code.
 :::
 
-```mermaid
-sequenceDiagram
-    alt Call
-    Token->>BalanceMap: Map::new(map_slot);
-    Token->>Token: to_bal = storage.balances.at(to)
-    Token->>BalanceMap: BalanceMap.at(to)
-    BalanceMap->>BalanceMap: derived_slot = H(map_slot, to)
-    BalanceMap->>BalanceSet: BalanceSet::new(to, derived_slot)
-    Token->>BalanceSet: to_bal.add(amount)
-    BalanceSet->>BalanceSet: note = UintNote::new(amount, to)
-    BalanceSet->>Set: insert(note)
-    Set->>LifeCycle: create_note(derived_slot, note)
-    LifeCycle->>LifeCycle: note.header = NoteHeader { contract_address, <br> storage_slot: derived_slot, nonce: 0, note_hash_counter }
-    UintPartialNotePrivateContent->>UintNote: note_hash = compute_partial_commitment(storage_slot).x
-    LifeCycle->>Context: push_note_hash(note_hash)
-    end
-    Context->>Kernel: unique_note_hash = H(nonce, note_hash)
-    Context->>Kernel: siloed_note_hash = H(contract_address, unique_note_hash)
-```
-
 Notice the `siloed_note_hash` at the very end. It's a hash that will be inserted into the note hashes tree. To clarify what this really is, we "unroll" the values to their simplest components. This gives us a better idea around what is actually inserted into the tree.
 
 ```rust
