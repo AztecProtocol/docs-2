@@ -104,4 +104,3 @@ Event data is published to Ethereum as blobs, which incurs costs. Consider:
 - Future alternatives for data availability may become available
 - Balance event utility with cost implications
 
-<!-- docs:end:emit_events -->

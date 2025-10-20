@@ -8,8 +8,8 @@ Private smart contracts on Aztec allow you to build applications where transacti
 
 ## Getting Started
 
-- [A Simple Aztec Smart Contract](./simple-contract) - Start with a basic example
-- [Example Aztec Smart Contracts](./examples) - Explore more complex patterns
+- A Simple Aztec Smart Contract - Start with a basic example
+- Example Aztec Smart Contracts - Explore more complex patterns
 
 ## Key Concepts
 

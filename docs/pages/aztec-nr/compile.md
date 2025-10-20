@@ -87,4 +87,3 @@ After compilation, use the generated artifacts to:
 - Interact with deployed contracts using type-safe interfaces
 - Import contracts in other Aztec.nr projects
 
-<!-- docs:end:compile_contracts -->

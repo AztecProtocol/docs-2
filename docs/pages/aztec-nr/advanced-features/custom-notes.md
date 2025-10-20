@@ -4,8 +4,8 @@ This guide shows you how to create custom note types for storing specialized pri
 
 ## Prerequisites
 
-- Basic understanding of [Aztec private state](../../concepts/storage/state_model.md)
-- Familiarity with [notes and UTXOs](../../concepts/storage/index.md)
+- Basic understanding of Aztec private state
+- Familiarity with notes and UTXOs
 - Aztec development environment set up
 
 ## Why create custom notes?
@@ -329,11 +329,10 @@ fn get_order(owner: AztecAddress, target_id: Field) -> OrderNote {
 
 ## Further reading
 
-- [What the `#[note]` macro does](../../concepts/smart_contracts/functions/attributes.md#implementing-notes)
-- [Note lifecycle and nullifiers](../../concepts/advanced/storage/indexed_merkle_tree.mdx)
-- [Advanced note patterns](./advanced/how_to_retrieve_filter_notes.md)
-- [Note portals for L1 communication](./how_to_communicate_cross_chain.md)
-- [Macros reference](../../reference/smart_contract_reference/macros.md)
-- [Keys, including npk_m_hash](../../concepts/accounts/keys.md)
+- What the `#[note]` macro does - See concepts section
+- Note lifecycle and nullifiers - See concepts section
+- Advanced note patterns - See advanced features
+- Note portals for L1 communication - See cross-chain interactions
+- Macros reference - See reference section
+- Keys, including npk_m_hash - See concepts section
 
-<!-- docs:end:how_to_implement_custom_notes -->

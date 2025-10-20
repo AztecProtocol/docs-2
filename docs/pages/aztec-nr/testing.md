@@ -5,7 +5,6 @@
 2. Testing end-to-end apps.
     - See Aztec.js?
 
-<!-- docs:start:test_contracts -->
 
 This guide shows you how to test your Aztec smart contracts using Noir's `TestEnvironment` for fast, lightweight testing.
 
@@ -16,7 +15,7 @@ This guide shows you how to test your Aztec smart contracts using Noir's `TestEn
 - Basic understanding of Noir syntax
 
 :::tip
-For complex cross-chain or integration testing, see the [TypeScript testing guide](../aztec-js/how_to_test.md).
+For complex cross-chain or integration testing, see the TypeScript testing guide in the Aztec.js section.
 :::
 
 ## Write Aztec contract tests
@@ -27,7 +26,7 @@ Use `TestEnvironment` from `aztec-nr` for contract unit testing:
 - **Convenient**: Similar to Foundry for simple contract tests
 - **Limited**: No rollup circuits or cross-chain messaging
 
-For complex end-to-end tests, use [TypeScript testing](../aztec-js/how_to_test.md) with `aztec.js`.
+For complex end-to-end tests, use TypeScript testing with `aztec.js`.
 
 ## Run your tests
 
@@ -334,4 +333,3 @@ unconstrained fn test_missing_authwit() {
 
 ```
 
-<!-- docs:end:test_contracts -->

@@ -2,7 +2,7 @@
 
 On this page we will cover the main responsibilities of a wallet in the Aztec network.
 
-Go to [wallet architecture](./architecture.md) for an overview of its architecture and a reference on the interface a wallet must implement.
+See the wallet architecture section for an overview of its architecture and a reference on the interface a wallet must implement.
 
 Wallets are the applications through which users manage their accounts. Users rely on wallets to browse through their accounts, monitor their balances, and create new accounts. Wallets also store seed phrases and private keys, or interact with external keystores such as hardware wallets.
 
@@ -12,11 +12,11 @@ In addition to these usual responsibilities, wallets in Aztec also need to track
 
 ## Account setup
 
-The first step for any wallet is to let the user set up their [accounts](../accounts/index.md). An account in Aztec is represented onchain by its corresponding account contract that the user must deploy to begin interacting with the network. This account contract dictates how transactions are authenticated and executed.
+The first step for any wallet is to let the user set up their accounts. An account in Aztec is represented onchain by its corresponding account contract that the user must deploy to begin interacting with the network. This account contract dictates how transactions are authenticated and executed.
 
 A wallet must support at least one specific account contract implementation, which means being able to deploy such a contract, as well as interacting with it when sending transactions. Code-wise, this requires [implementing the `AccountContract` interface](https://github.com/AztecProtocol/aztec-packages/blob/#include_aztec_version/yarn-project/aztec.js/src/account/interface.ts).
 
-Note that users must be able to receive funds in Aztec before deploying their account. A wallet should let a user generate a [deterministic complete address](../accounts/keys.md#address-keys) without having to interact with the network, so they can share it with others to receive funds. This requires that the wallet pins a specific contract implementation, its initialization arguments, a deployment salt, and a privacy key. These values yield a deterministic address, so when the account contract is actually deployed, it is available at the precalculated address. Once the account contract is deployed, the user can start sending transactions using it as the transaction origin.
+Note that users must be able to receive funds in Aztec before deploying their account. A wallet should let a user generate a deterministic complete address without having to interact with the network, so they can share it with others to receive funds. This requires that the wallet pins a specific contract implementation, its initialization arguments, a deployment salt, and a privacy key. These values yield a deterministic address, so when the account contract is actually deployed, it is available at the precalculated address. Once the account contract is deployed, the user can start sending transactions using it as the transaction origin.
 
 ## Transaction lifecycle
 
@@ -38,13 +38,13 @@ There are no proofs generated as of the Sandbox release. This will be included i
 
 ## Authorizing actions
 
-Account contracts in Aztec expose an interface for other contracts to validate [whether an action is authorized by the account or not](../accounts/index.md#authorizing-actions). For example, an application contract may want to transfer tokens on behalf of a user, in which case the token contract will check with the account contract whether the application is authorized to do so. These actions may be carried out in private or in public functions, and in transactions originated by the user or by someone else.
+Account contracts in Aztec expose an interface for other contracts to validate whether an action is authorized by the account or not. For example, an application contract may want to transfer tokens on behalf of a user, in which case the token contract will check with the account contract whether the application is authorized to do so. These actions may be carried out in private or in public functions, and in transactions originated by the user or by someone else.
 
 Wallets should manage these authorizations, prompting the user when they are requested by an application. Authorizations in private executions come in the form of _auth witnesses_, which are usually signatures over an identifier for an action. Applications can request the wallet to produce an auth witness via the `createAuthWit` call. In public functions, authorizations are pre-stored in the account contract storage, which is handled by a call to an internal function in the account contract implementation.
 
 ## Key management
 
-As in EVM-based chains, wallets are expected to manage user keys, or provide an interface to hardware wallets or alternative key stores. Keep in mind that in Aztec each account requires [two sets of keys](../accounts/keys.md): privacy keys and authentication keys. Privacy keys are mandated by the protocol and used for encryption and nullification, whereas authentication keys are dependent on the account contract implementation rolled out by the wallet. Should the account contract support it, wallets must provide the user with the means to rotate or recover their authentication keys.
+As in EVM-based chains, wallets are expected to manage user keys, or provide an interface to hardware wallets or alternative key stores. Keep in mind that in Aztec each account requires two sets of keys: privacy keys and authentication keys. Privacy keys are mandated by the protocol and used for encryption and nullification, whereas authentication keys are dependent on the account contract implementation rolled out by the wallet. Should the account contract support it, wallets must provide the user with the means to rotate or recover their authentication keys.
 
 :::info
 Due to limitations in the current architecture, privacy keys need to be available in the wallet software itself and cannot be punted to an external keystore. This restriction may be lifted in a future release.
@@ -52,7 +52,7 @@ Due to limitations in the current architecture, privacy keys need to be availabl
 
 ## Recipient encryption keys
 
-Wallets are also expected to manage the public encryption keys of any recipients of local transactions. When creating an encrypted note for a recipient given their address, the wallet needs to provide their [complete address](../accounts/keys.md#address-keys). Recipients broadcast their complete addresses when deploying their account contracts, and wallets collect this information and save it in a local registry for easy access when needed.
+Wallets are also expected to manage the public encryption keys of any recipients of local transactions. When creating an encrypted note for a recipient given their address, the wallet needs to provide their complete address. Recipients broadcast their complete addresses when deploying their account contracts, and wallets collect this information and save it in a local registry for easy access when needed.
 
 Note that, in order to interact with a recipient who has not yet deployed their account contract (and thus not broadcasted their complete address), it must also be possible to manually add an entry to a wallet's local registry of complete addresses.
 

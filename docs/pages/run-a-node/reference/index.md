@@ -8,18 +8,18 @@ This section contains reference materials for node operators, including governan
 
 ## Contents
 
-### [Governance and Proposals](./governance-and-proposals)
+### Governance and Proposals
 Information about network governance and the proposal process.
 
-### [FAQs](./faqs)
+### FAQs
 Frequently asked questions about running Aztec nodes.
 
-### [Commands](./commands)
+### Commands
 Reference for common node operation commands.
 
-### [CLI Reference](./cli-reference)
+### CLI Reference
 Complete command-line interface reference for node operators.
 
 ## Additional Resources
 
-For getting started with running a node, see the [Getting Started](../getting-started) guide.
+For getting started with running a node, see the Getting Started guide.

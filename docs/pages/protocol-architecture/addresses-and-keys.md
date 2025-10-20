@@ -122,13 +122,13 @@ Account contracts are also expected, though not required by the protocol, to imp
 
 When executing a private function, this authorization is checked by requesting an authentication witness from the execution oracle, which is usually a signed message. Authentication Witness is a scheme for authenticating actions on Aztec, so users can allow third-parties (e.g. contracts) to execute an action on their behalf.
 
-The user's [Private eXecution Environment (PXE)](../pxe/index.md) is responsible for storing these auth witnesses and returning them to the requesting account contract. Auth witnesses can belong to the current user executing the local transaction, or to another user who shared it offchain.
+The user's Private eXecution Environment (PXE) is responsible for storing these auth witnesses and returning them to the requesting account contract. Auth witnesses can belong to the current user executing the local transaction, or to another user who shared it offchain.
 
-However, during a public function execution, it is not possible to retrieve a value from the local [oracle](../smart_contracts/oracles/index.md). To support authorizations in public functions, account contracts should save in a public authwit registry what actions have been pre-authorized by their owner.
+However, during a public function execution, it is not possible to retrieve a value from the local oracle. To support authorizations in public functions, account contracts should save in a public authwit registry what actions have been pre-authorized by their owner.
 
 These two patterns combined allow an account contract to answer whether an action `is_valid_impl` for a given user both in private and public contexts.
 
-You can read more about authorizing actions with authorization witnesses on [this page](../advanced/authwit.md).
+You can read more about authorizing actions with authorization witnesses in the concepts section.
 
 :::info
 
@@ -152,7 +152,7 @@ Nonce abstraction is mostly relevant to those building wallets. For example, a d
 
 ### Fee abstraction
 
-It doesn't have to be the transaction sender who pays the transaction fees. Wallets or dapp developers can choose any payment logic they want using a paymaster. To learn more about fees on Aztec – check [this page](../fees.md).
+It doesn't have to be the transaction sender who pays the transaction fees. Wallets or dapp developers can choose any payment logic they want using a paymaster. To learn more about fees on Aztec – check the fees section.
 
 Paymaster is a contract that can pay for transactions on behalf of users. It is invoked during the private execution stage and set as the fee payer.
 
@@ -184,9 +184,9 @@ To spend a note, the user computes a nullifier corresponding to this note. A nul
 
 ### Address keys
 
-Address keys are used for account [address derivation](../accounts/index.md).
+Address keys are used for account address derivation.
 
-<Image img={require("@site/static/img/address_derivation.png")} />
+![address-derivation](/address_derivation.png)
 
 Address keys are a pair of keys `AddressPublicKey` and `address_sk` where `address_sk` is a scalar defined as `address_sk = pre_address + ivsk` and `AddressPublicKey` is an elliptic curve point defined as `AddressPublicKey = address_sk * G`. This is useful for encrypting notes for the recipient with only their address.
 
@@ -232,7 +232,7 @@ When it comes to notes encryption and decryption:
 
 ### Signing keys
 
-Thanks to the native [account abstraction](../accounts/index.md), authorization logic can be implemented in an alternative way that is up to the developer (e.g. using Google authorization credentials, vanilla password logic or Face ID mechanism). In these cases, signing keys may not be relevant.
+Thanks to the native account abstraction, authorization logic can be implemented in an alternative way that is up to the developer (e.g. using Google authorization credentials, vanilla password logic or Face ID mechanism). In these cases, signing keys may not be relevant.
 
 However if one wants to implement authorization logic containing signatures (e.g. ECDSA or Shnorr) they will need signing keys. Usually, an account contract will validate a signature of the incoming payload against a known signing public key.
 
@@ -263,7 +263,7 @@ When it comes to storing the signing key in a private note, there are several de
 
 #### Using Delayed Public Mutable state
 
-By [Delayed Public Mutable](../../guides/smart_contracts/how_to_define_storage.md#delayed-public-mutable) we mean privately readable publicly mutable state.
+By Delayed Public Mutable we mean privately readable publicly mutable state.
 
 To make public state accessible privately, there is a delay window in public state updates. One needs this window to be able to generate proofs client-side. This approach would not generate additional nullifiers and commitments for each transaction while allowing the user to rotate their key. However, this causes every transaction to now have a time-to-live determined by the frequency of the delayed mutable state, as well as imposing restrictions on how fast keys can be rotated due to minimum delays.
 
@@ -277,7 +277,7 @@ Since there are no restrictions on the actions that an account contract may exec
 
 ### Keys generation
 
-All key pairs (except for the signing keys) are generated in the [Private Execution Environment](../pxe/index.md) (PXE) when a user creates an account. PXE is also responsible for the further key management (oracle access to keys, app siloed keys derivation, etc.)
+All key pairs (except for the signing keys) are generated in the Private Execution Environment (PXE) when a user creates an account. PXE is also responsible for the further key management (oracle access to keys, app siloed keys derivation, etc.)
 
 ### Keys derivation
 
@@ -301,7 +301,7 @@ App-siloed keys allow to minimize damage of potential key leaks as a leak of the
 
 App-siloed keys are derived from the corresponding master keys and the contract address. For example, for the app-siloed nullifier secret key: `nsk_app = hash(nsk_m, app_contract_address)`.
 
-App-siloed keys [are derived](../advanced/storage/storage_slots.md#implementation) in PXE every time the user interacts with the application.
+App-siloed keys are derived in PXE every time the user interacts with the application.
 
 App-siloed incoming viewing key also allows per-application auditability. A user may choose to disclose this key for a given application to an auditor or regulator (or for 3rd party interfaces, e.g. giving access to a block explorer to display my activity), as a means to reveal all their activity within that context, while retaining privacy across all other applications in the network.
 

@@ -1,21 +1,21 @@
 import { defineConfig } from 'vocs'
-import remarkMath from 'remark-math'
-import rehypeKatex from 'rehype-katex'
 import * as path from 'path'
 import { remarkIncludeCode } from './src/plugins/remark-include-code'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
 
 export default defineConfig({
   title: 'Aztec Docs',
   markdown: {
-    rehypePlugins: [
-      [rehypeKatex, { strict: false }]
-    ],
     remarkPlugins: [
       remarkMath,
       [remarkIncludeCode, {
         rootDir: path.join(__dirname, 'submodules/aztec-packages'),
         commitTag: process.env.COMMIT_TAG
       }]
+    ],
+    rehypePlugins: [
+      rehypeKatex
     ]
   },
   topNav: [
