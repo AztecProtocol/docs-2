@@ -1,23 +1,24 @@
-name: PR Checks
+name: Lint
 
 on:
   pull_request:
+  push:
     branches:
       - main
 
 jobs:
   lint:
-    name: Lint Code
+    name: ESLint
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "yarn"
 
       - name: Install dependencies
@@ -27,17 +28,17 @@ jobs:
         run: yarn lint
 
   format:
-    name: Check Formatting
+    name: Prettier
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "yarn"
 
       - name: Install dependencies
@@ -47,17 +48,17 @@ jobs:
         run: yarn format:check
 
   typecheck:
-    name: Type Check
+    name: TypeScript
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "yarn"
 
       - name: Install dependencies
@@ -65,23 +66,3 @@ jobs:
 
       - name: Run TypeScript type check
         run: yarn typecheck
-
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "yarn"
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Build
-        run: yarn build
