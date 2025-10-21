@@ -37,49 +37,53 @@ export default defineConfig({
       link: '/aztec-nr/aztec-vs-ethereum',
     },
     {
-      text: '4. Protocol Architecture',
-      link: '/protocol-architecture',
+      text: '4. Foundational Topics',
+      link: '/foundational-topics',
       collapsed: false,
       items: [
         {
           text: '4.1 Overview',
-          link: '/protocol-architecture/overview',
+          link: '/foundational-topics/overview',
         },
         {
-          text: '4.2 Addresses & Keys',
-          link: '/protocol-architecture/addresses-and-keys',
+          text: '4.2 Addresses, Accounts & Keys',
+          link: '/foundational-topics/addresses-accounts-and-keys',
         },
         {
-          text: '4.3 Wallets',
-          link: '/protocol-architecture/wallets',
+          text: '4.3 Storage',
+          link: '/foundational-topics/storage',
         },
         {
-          text: '4.4 Call Types',
-          link: '/protocol-architecture/call-types',
+          text: '4.4 Storage Slots',
+          link: '/foundational-topics/storage-slots',
         },
         {
-          text: '4.6 Transactions',
-          link: '/protocol-architecture/transactions',
+          text: '4.5 Transactions',
+          link: '/foundational-topics/transactions',
         },
         {
-          text: '4.7 Fees',
-          link: '/protocol-architecture/fees',
+          text: '4.6 Fees',
+          link: '/foundational-topics/fees',
         },
         {
-          text: '4.8 Nullifier Merkle Tree',
-          link: '/protocol-architecture/nullifier-merkle-tree',
+          text: '4.7 Wallets',
+          link: '/foundational-topics/wallets',
         },
         {
-          text: '4.9 Note Discovery',
-          link: '/protocol-architecture/note-discovery',
+          text: '4.8 Call Types',
+          link: '/foundational-topics/call-types',
         },
         {
-          text: '4.10 Circuits',
-          link: '/protocol-architecture/circuits',
+          text: '4.9 Nullifier Merkle Tree',
+          link: '/foundational-topics/nullifier-merkle-tree',
         },
         {
-          text: '4.11 Storage Slots',
-          link: '/protocol-architecture/storage-slots',
+          text: '4.10 Note Discovery',
+          link: '/foundational-topics/note-discovery',
+        },
+        {
+          text: '4.11 Circuits',
+          link: '/foundational-topics/circuits',
         }
       ],
     },
@@ -111,85 +115,81 @@ export default defineConfig({
           link: '/aztec-nr/installation',
         },
         {
-          text: '5.4 Language Description',
-          link: '/aztec-nr/language-description',
+          text: '5.4 Framework Description',
+          link: '/aztec-nr/framework-description',
           collapsed: true,
           items: [
             {
               text: '5.4.1 Project Structure',
-              link: '/aztec-nr/language-description/project-structure'
+              link: '/aztec-nr/framework-description/project-structure'
             },
             {
               text: '5.4.2 Contract Structure',
-              link: '/aztec-nr/language-description/contract-structure'
+              link: '/aztec-nr/framework-description/contract-structure'
             },
             {
               text: '5.4.3 Declaring a Contract',
-              link: '/aztec-nr/language-description/declaring-a-contract'
+              link: '/aztec-nr/framework-description/declaring-a-contract'
             },
             {
               text: '5.4.4 Functions',
-              link: '/aztec-nr/language-description/functions'
+              link: '/aztec-nr/framework-description/functions'
             },
             {
               text: '5.4.5 Calling Other Contracts',
-              link: '/aztec-nr/language-description/calling-other-contracts'
+              link: '/aztec-nr/framework-description/calling-other-contracts'
             },
             {
               text: '5.4.6 Aztec Attributes',
-              link: '/aztec-nr/language-description/aztec-attributes'
+              link: '/aztec-nr/framework-description/aztec-attributes'
             },
             {
               text: '5.4.7 Global Variables',
-              link: '/aztec-nr/language-description/global-variables'
+              link: '/aztec-nr/framework-description/global-variables'
             },
             {
               text: '5.4.8 State Variables',
-              link: '/aztec-nr/language-description/state-variables'
+              link: '/aztec-nr/framework-description/state-variables'
             },
             {
               text: '5.4.9 Events and Logs',
-              link: '/aztec-nr/language-description/events-and-logs'
+              link: '/aztec-nr/framework-description/events-and-logs'
             },
             {
               text: '5.4.10 Private Messaging',
-              link: '/aztec-nr/language-description/private-messaging'
+              link: '/aztec-nr/framework-description/private-messaging'
             },
             {
               text: '5.4.11 L1<>L2 Messaging',
-              link: '/aztec-nr/language-description/l1-l2-messaging'
+              link: '/aztec-nr/framework-description/l1-l2-messaging'
             },
             {
               text: '5.4.12 Cross-chain Interactions',
-              link: '/aztec-nr/language-description/cross-chain-interactions'
+              link: '/aztec-nr/framework-description/cross-chain-interactions'
             },
             {
-              text: '5.4.13 Macros',
-              link: '/aztec-nr/language-description/macros'
+              text: '5.4.13 Authentication Witness',
+              link: '/aztec-nr/framework-description/authentication-witness'
             },
             {
               text: '5.4.14 Protocol Oracles',
-              link: '/aztec-nr/language-description/protocol-oracles'
+              link: '/aztec-nr/framework-description/protocol-oracles'
             },
             {
               text: '5.4.15 Libraries',
-              link: '/aztec-nr/language-description/libraries'
+              link: '/aztec-nr/framework-description/libraries'
             },
             {
               text: '5.4.16 Upgradeable Contracts',
-              link: '/aztec-nr/language-description/upgradeable-contracts'
+              link: '/aztec-nr/framework-description/upgradeable-contracts'
             },
             {
               text: '5.4.17 Error Handling',
-              link: '/aztec-nr/language-description/error-handling'
+              link: '/aztec-nr/framework-description/error-handling'
             },
             {
               text: '5.4.18 CoSnarks',
-              link: '/aztec-nr/language-description/cosnarks'
-            },
-            {
-              text: '5.4.19 Authentication Witness',
-              link: '/aztec-nr/language-description/authentication-witness'
+              link: '/aztec-nr/framework-description/cosnarks'
             }
           ]
         },
@@ -210,17 +210,6 @@ export default defineConfig({
           link: '/aztec-nr/deploying',
         },
         {
-          text: '5.9 Advanced Features',
-          link: '/aztec-nr/advanced-features',
-          collapsed: true,
-          items: [
-            {
-              text: '5.9.1 Custom Notes',
-              link: '/aztec-nr/advanced-features/custom-notes'
-            }
-          ]
-        },
-        {
           text: '5.10 Common Patterns',
           link: '/aztec-nr/common-patterns',
         },
@@ -234,11 +223,11 @@ export default defineConfig({
               link: '/aztec-nr/optimizations-and-gas/gas'
             },
             {
-              text: '5.11.1 Profiling',
+              text: '5.11.2 Profiling',
               link: '/aztec-nr/optimizations-and-gas/profiling'
             },
             {
-              text: '5.11.2 Optimizing Functions',
+              text: '5.11.3 Optimizing Functions',
               link: '/aztec-nr/optimizations-and-gas/optimizing-functions'
             },
             {
@@ -266,30 +255,40 @@ export default defineConfig({
           link: '/aztec-js/overview',
         },
         {
-          text: '6.2 Getting Started',
-          link: '/aztec-js/getting-started',
+          text: '6.3 Installation',
+          link: '/aztec-js/getting-started/installation',
         },
         {
-          text: '6.3 Reference',
+          text: '6.4 Creating Accounts',
+          link: '/aztec-js/getting-started/creating-accounts',
+        },
+        {
+          text: '6.5 Deploying Contracts',
+          link: '/aztec-js/getting-started/deploying-contracts',
+        },
+        {
+          text: '6.6 Sending Transactions',
+          link: '/aztec-js/getting-started/sending-transactions',
+        },
+        {
+          text: '6.7 Simulating Transactions',
+          link: '/aztec-js/getting-started/simulating-transactions',
+        },
+        {
+          text: '6.8 Using Authorizing Other Accounts',
+          link: '/aztec-js/getting-started/using-authorizing-other-accounts',
+        },
+        {
+          text: '6.9 Paying Fees',
+          link: '/aztec-js/getting-started/paying-fees',
+        },
+        {
+          text: '6.10 Testing Contracts',
+          link: '/aztec-js/getting-started/testing-contracts',
+        },
+        {
+          text: '6.11 Reference',
           link: '/aztec-js/reference',
-        },
-      ],
-    },
-    {
-      text: '7. Aztec Nargo',
-      collapsed: false,
-      items: [
-        {
-          text: '7.1 Overview',
-          link: '/aztec-nargo/overview',
-        },
-        {
-          text: '7.2 Getting Started',
-          link: '/aztec-nargo/getting-started',
-        },
-        {
-          text: '7.3 Reference',
-          link: '/aztec-nargo/reference',
         },
       ],
     },
