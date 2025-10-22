@@ -100,11 +100,7 @@ export default defineConfig({
           link: '/tutorials/private-token-smart-contract',
         },
         {
-          text: '5.3 Private Voting DApp',
-          link: '/tutorials/private-voting-dapp',
-        },
-        {
-          text: '5.4 Token Bridge',
+          text: '5.3 Token Bridge',
           link: '/tutorials/token-bridge',
         },
 
