@@ -34,7 +34,7 @@ export default defineConfig({
     },
     {
       text: '3. Aztec vs Ethereum',
-      link: '/aztec-nr/aztec-vs-ethereum',
+      link: '/aztec-vs-ethereum',
     },
     {
       text: '4. Foundational Topics',
@@ -254,35 +254,35 @@ export default defineConfig({
         },
         {
           text: '7.2 Installation',
-          link: '/aztec-js/getting-started/installation',
+          link: '/aztec-js/installation',
         },
         {
           text: '7.3 Creating Accounts',
-          link: '/aztec-js/getting-started/creating-accounts',
+          link: '/aztec-js/creating-accounts',
         },
         {
           text: '7.4 Deploying Contracts',
-          link: '/aztec-js/getting-started/deploying-contracts',
+          link: '/aztec-js/deploying-contracts',
         },
         {
           text: '7.5 Sending Transactions',
-          link: '/aztec-js/getting-started/sending-transactions',
+          link: '/aztec-js/sending-transactions',
         },
         {
           text: '7.6 Simulating Transactions',
-          link: '/aztec-js/getting-started/simulating-transactions',
+          link: '/aztec-js/simulating-transactions',
         },
         {
           text: '7.7 Using Authorizing Other Accounts',
-          link: '/aztec-js/getting-started/using-authorizing-other-accounts',
+          link: '/aztec-js/using-authorizing-other-accounts',
         },
         {
           text: '7.8 Paying Fees',
-          link: '/aztec-js/getting-started/paying-fees',
+          link: '/aztec-js/paying-fees',
         },
         {
           text: '7.9 Testing Contracts',
-          link: '/aztec-js/getting-started/testing-contracts',
+          link: '/aztec-js/testing-contracts',
         },
         {
           text: '7.10 Reference',
