@@ -46,44 +46,24 @@ export default defineConfig({
           link: '/foundational-topics/overview',
         },
         {
-          text: '4.2 Addresses, Accounts & Keys',
-          link: '/foundational-topics/addresses-accounts-and-keys',
-        },
-        {
-          text: '4.3 Storage',
-          link: '/foundational-topics/storage',
-        },
-        {
-          text: '4.4 Storage Slots',
-          link: '/foundational-topics/storage-slots',
-        },
-        {
-          text: '4.5 Transactions',
+          text: '4.2 Transactions',
           link: '/foundational-topics/transactions',
         },
         {
-          text: '4.6 Fees',
-          link: '/foundational-topics/fees',
+          text: '4.4 State Management',
+          link: '/foundational-topics/state-management',
+        },
+        {
+          text: '4.3 Addresses, Accounts & Keys',
+          link: '/foundational-topics/addresses-accounts-and-keys',
         },
         {
           text: '4.7 Wallets',
           link: '/foundational-topics/wallets',
         },
         {
-          text: '4.8 Call Types',
-          link: '/foundational-topics/call-types',
-        },
-        {
-          text: '4.9 Nullifier Merkle Tree',
-          link: '/foundational-topics/nullifier-merkle-tree',
-        },
-        {
-          text: '4.10 Note Discovery',
-          link: '/foundational-topics/note-discovery',
-        },
-        {
-          text: '4.11 Circuits',
-          link: '/foundational-topics/circuits',
+          text: '4.6 Fees',
+          link: '/foundational-topics/fees',
         }
       ],
     },
@@ -102,8 +82,7 @@ export default defineConfig({
         {
           text: '5.3 Token Bridge',
           link: '/tutorials/token-bridge',
-        },
-
+        }
       ]
     },
     {
@@ -120,12 +99,12 @@ export default defineConfig({
           collapsed: true,
           items: [
             {
-              text: '6.2.1 A Simple Aztec Smart Contract',
-              link: '/aztec-nr/introduction-to-private-smart-contracts/simple-contract'
+              text: '6.2.1 Private Token Contract',
+              link: '/aztec-nr/introduction-to-private-smart-contracts/private-token-contract'
             },
             {
-              text: '6.2.2 Example Aztec Smart Contracts',
-              link: '/aztec-nr/introduction-to-private-smart-contracts/examples'
+              text: '6.2.2 Account Contract',
+              link: '/aztec-nr/introduction-to-private-smart-contracts/account-contract'
             }
           ]
         },
@@ -179,8 +158,12 @@ export default defineConfig({
               link: '/aztec-nr/framework-description/private-messaging'
             },
             {
-              text: '6.4.11 L1<>L2 Messaging',
-              link: '/aztec-nr/framework-description/l1-l2-messaging'
+              text: '6.4.15 Libraries',
+              link: '/aztec-nr/framework-description/libraries'
+            },
+            {
+              text: '6.4.11 Ethereum<>Aztec Messaging',
+              link: '/aztec-nr/framework-description/ethereum-aztec-messaging'
             },
             {
               text: '6.4.12 Cross-chain Interactions',
@@ -191,24 +174,20 @@ export default defineConfig({
               link: '/aztec-nr/framework-description/authentication-witness'
             },
             {
-              text: '6.4.14 Protocol Oracles',
-              link: '/aztec-nr/framework-description/protocol-oracles'
-            },
-            {
-              text: '6.4.15 Libraries',
-              link: '/aztec-nr/framework-description/libraries'
-            },
-            {
               text: '6.4.16 Upgradeable Contracts',
               link: '/aztec-nr/framework-description/upgradeable-contracts'
             },
             {
-              text: '6.4.17 Error Handling',
-              link: '/aztec-nr/framework-description/error-handling'
+              text: '6.4.14 Protocol Oracles',
+              link: '/aztec-nr/framework-description/protocol-oracles'
             },
             {
-              text: '6.4.18 CoSnarks',
+              text: '6.4.18 CoSnarks: Shared Private State',
               link: '/aztec-nr/framework-description/cosnarks'
+            },
+            {
+              text: '6.4.17 Error Handling',
+              link: '/aztec-nr/framework-description/error-handling'
             }
           ]
         },
@@ -400,6 +379,10 @@ export default defineConfig({
             text: '4.4 CLI Reference',
             link: '/run-a-node/reference/cli-reference',
           },
+          {
+            text: '4.9 Nullifier Merkle Tree',
+            link: '/foundational-topics/nullifier-merkle-tree',
+          }
         ],
       },
     ],
