@@ -38,21 +38,15 @@ More information about the design/choices can be found in the fees section of th
 
 As part of a transaction the follow gas settings are available to be defined by the user.
 
-import { Gas_Settings_Components, Gas_Settings, Tx_Teardown_Phase } from '@site/src/components/Snippets/general_snippets';
-
-<Gas_Settings />
-
 These are:
 
 #include_code gas_settings_vars yarn-project/stdlib/src/gas/gas_settings.ts javascript
-
-<Gas_Settings_Components />
 
 ## Fee payment
 
 A fee payer will have bridged fee-juice from L1. On Aztec this fee asset is non-transferrable, and only deducted by the protocol to pay for fees. A user can claim bridged fee juice and use it to pay for transaction fees in the same transaction.
 
-The mechanisms for bridging is the same as any other token. For more on this concept see the start of the [Token Bridge Tutorial](../tutorials/js_tutorials/token_bridge.md) where it describes the components and how bridging works (under the hood this makes use of [portals](https://docs.aztec.network/developers/docs/concepts/communication/cross_chain_calls)).
+The mechanisms for bridging is the same as any other token. For more on this concept see the Token Bridge Tutorial where it describes the components and how bridging works (under the hood this makes use of portals).
 
 ### Payment methods
 
@@ -61,8 +55,6 @@ An account with fee-juice can pay for its transactions, including deployment of 
 An account making a transaction can also refer to "fee-paying contracts" (FPCs) to pay for its transactions. FPCs are contracts that accept a token and pay for transactions in fee juice. This means a user doesn't need to hold fee juice, they only need the token that the FPC accepts. FPCs can contain arbitrary logic to determine how they want to authorize transaction fee payments. They can be used for paying transaction fees privately or publicly.
 
 ### Teardown phase
-
-<Tx_Teardown_Phase />
 
 ### Operator rewards
 
@@ -75,4 +67,4 @@ The fees section of the protocol specification explains this distribution of fee
 
 More comprehensive technical details for implementers will be available from the updated protocol specifications soon.
 
-For a guide showing ways to pay fees programmatically, see [here](../guides/aztec-js/how_to_pay_fees).
+For a guide showing ways to pay fees programmatically, see the Aztec.js guides section.

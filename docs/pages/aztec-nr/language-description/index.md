@@ -27,7 +27,7 @@ This section covers all aspects of the Aztec.nr language:
 
 ### Communication
 - **Private Messaging** - Encrypted messaging between accounts
-- **L1<>L2 Messaging** - Cross-layer communication
+- **L1↔L2 Messaging** - Cross-layer communication
 - **Cross-chain Interactions** - Interacting with other chains
 
 ### Advanced Topics

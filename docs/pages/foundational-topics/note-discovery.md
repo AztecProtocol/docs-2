@@ -1,7 +1,7 @@
 # Note Discovery
 
 
-Note discovery refers to the process of a user identifying and decrypting the [encrypted notes](../../storage/notes.md) that belong to them.
+Note discovery refers to the process of a user identifying and decrypting the encrypted notes that belong to them.
 
 ## Existing solutions
 
@@ -39,4 +39,4 @@ This note discovery scheme will be implemented by Aztec contracts rather than by
 
 ## Further reading
 
-- [How partial notes are discovered](./partial_notes.md#note-discovery)
+- How partial notes are discovered

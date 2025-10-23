@@ -185,6 +185,6 @@ Check hex errors against [Errors.sol](https://github.com/AztecProtocol/aztec-pac
 
 ## Related Resources
 
-- [Circuit Architecture](../../concepts/advanced/circuits/index.md)
-- [Private-Public Execution](../../concepts/smart_contracts/functions/public_private_calls.md)
-- [Aztec.nr Dependencies](../../reference/smart_contract_reference/dependencies.md)
+- Circuit Architecture - See concepts section
+- Private-Public Execution - See concepts section
+- Aztec.nr Dependencies - See reference section

@@ -20,7 +20,6 @@
             - Stealthifying Addresses
                 - Custom Stealth Addresses
 
-<!-- docs:start:call_contracts -->
 
 This guide shows you how to call functions in other contracts from your Aztec smart contracts, enabling contract composability and interaction.
 
@@ -83,11 +82,10 @@ OtherContract::at(contract_address)
 ```
 
 :::info
-Public functions always execute after private execution completes. Learn more in the [concepts overview](../../concepts/index.md).
+Public functions always execute after private execution completes. Learn more in the concepts overview.
 :::
 
 ### Use other call types
 
-Explore additional call types for specialized use cases in the [call types reference](../../concepts/call_types.md).
+Explore additional call types for specialized use cases in the call types reference.
 
-<!-- docs:end:call_contracts -->

@@ -15,7 +15,7 @@ Before learning how to create Aztec smart contracts, we must first install some 
 
 - [Docker](https://docs.docker.com/get-docker/)
 
-## Install Aztec Tools
+## Install Aztec Tools
 
 1. Docker needs to be running in order to install the sandbox.
 
@@ -33,7 +33,6 @@ aztec --version
 
 ## Noir VSCode Extension
 
-<!-- docs:start:installing_noir_lsp -->
 
 Install the [Noir Language Support extension](https://marketplace.visualstudio.com/items?itemName=noir-lang.vscode-noir) to get syntax highlighting, syntax error detection and go-to definitions for your Aztec contracts. 
 
@@ -47,7 +46,6 @@ which aztec-nargo
 
 To specify a custom nargo executable, go to the VSCode settings and search for "noir", or click extension settings on the `noir-lang` LSP plugin. Update the `Noir: Nargo Path` field to point to your desired `aztec-nargo` executable.
 
-<!-- docs:end:installing_noir_lsp -->
 
 ## Creating an Aztec.nr Project
 

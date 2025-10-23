@@ -13,7 +13,7 @@
 - An Aztec contract project set up with `aztec-nr` dependency
 - Understanding of Aztec L1/L2 architecture
 - Access to Ethereum development environment for L1 contracts
-- Deployed portal contract on L1 (see [token bridge tutorial](../../tutorials/js_tutorials/token_bridge.md))
+- Deployed portal contract on L1 (see token bridge tutorial)
 
 ## Send messages from L1 to L2
 
@@ -195,6 +195,5 @@ bytes memory message = abi.encodeWithSignature(
 
 ## Next steps
 
-Follow the [cross-chain messaging tutorial](../../tutorials/js_tutorials/token_bridge.md) for a complete implementation example.
+Follow the cross-chain messaging tutorial for a complete implementation example.
 
-<!-- docs:end:communicate_cross_chain -->

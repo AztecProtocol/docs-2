@@ -25,4 +25,4 @@ It is also worth mentioning Noir's `unconstrained` function type [here (Noir doc
 - `#[storage]` - Defines contract storage
 
 ## Further reading
-[How do Aztec macros work?](../../concepts/smart_contracts/functions/function_transforms.md)
+How do Aztec macros work? - See concepts section
