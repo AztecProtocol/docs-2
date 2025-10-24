@@ -1,5 +1,7 @@
 # Gas
 
+## Mike's notes
+
 - L2 vs DA gas.
 - Gas tables
     - How much gas do different operations consume, including common crypto & bignum functions.

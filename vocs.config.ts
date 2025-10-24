@@ -34,7 +34,7 @@ export default defineConfig({
     },
     {
       text: '3. Aztec vs Ethereum',
-      link: '/aztec-nr/aztec-vs-ethereum',
+      link: '/aztec-vs-ethereum',
     },
     {
       text: '4. Foundational Topics',
@@ -126,8 +126,8 @@ export default defineConfig({
               link: '/aztec-nr/framework-description/contract-structure'
             },
             {
-              text: '6.4.3 Declaring a Contract',
-              link: '/aztec-nr/framework-description/declaring-a-contract'
+              text: '6.4.3 Contract Scope',
+              link: '/aztec-nr/framework-description/contract-scope'
             },
             {
               text: '6.4.4 Functions',
@@ -158,35 +158,43 @@ export default defineConfig({
               link: '/aztec-nr/framework-description/private-messaging'
             },
             {
-              text: '6.4.15 Libraries',
+              text: '6.4.11 Libraries',
               link: '/aztec-nr/framework-description/libraries'
             },
             {
-              text: '6.4.11 Ethereum<>Aztec Messaging',
+              text: '6.4.12 Ethereum<>Aztec Messaging',
               link: '/aztec-nr/framework-description/ethereum-aztec-messaging'
             },
             {
-              text: '6.4.12 Cross-chain Interactions',
+              text: '6.4.13 Cross-chain Interactions',
               link: '/aztec-nr/framework-description/cross-chain-interactions'
             },
             {
-              text: '6.4.13 Authentication Witness',
+              text: '6.4.14 Authentication Witness',
               link: '/aztec-nr/framework-description/authentication-witness'
+            },
+            {
+              text: '6.4.15 Reading Historic State',
+              link: '/aztec-nr/framework-description/reading-historic-state'
             },
             {
               text: '6.4.16 Upgradeable Contracts',
               link: '/aztec-nr/framework-description/upgradeable-contracts'
             },
             {
-              text: '6.4.14 Protocol Oracles',
+              text: '6.4.17 Capsules',
+              link: '/aztec-nr/framework-description/capsules'
+            },
+            {
+              text: '6.4.18 Protocol Oracles',
               link: '/aztec-nr/framework-description/protocol-oracles'
             },
             {
-              text: '6.4.18 CoSnarks: Shared Private State',
+              text: '6.4.19 CoSnarks: Shared Private State',
               link: '/aztec-nr/framework-description/cosnarks'
             },
             {
-              text: '6.4.17 Error Handling',
+              text: '6.4.20 Error Handling',
               link: '/aztec-nr/framework-description/error-handling'
             }
           ]
@@ -254,35 +262,35 @@ export default defineConfig({
         },
         {
           text: '7.2 Installation',
-          link: '/aztec-js/getting-started/installation',
+          link: '/aztec-js/installation',
         },
         {
           text: '7.3 Creating Accounts',
-          link: '/aztec-js/getting-started/creating-accounts',
+          link: '/aztec-js/creating-accounts',
         },
         {
           text: '7.4 Deploying Contracts',
-          link: '/aztec-js/getting-started/deploying-contracts',
+          link: '/aztec-js/deploying-contracts',
         },
         {
           text: '7.5 Sending Transactions',
-          link: '/aztec-js/getting-started/sending-transactions',
+          link: '/aztec-js/sending-transactions',
         },
         {
           text: '7.6 Simulating Transactions',
-          link: '/aztec-js/getting-started/simulating-transactions',
+          link: '/aztec-js/simulating-transactions',
         },
         {
           text: '7.7 Using Authorizing Other Accounts',
-          link: '/aztec-js/getting-started/using-authorizing-other-accounts',
+          link: '/aztec-js/using-authorizing-other-accounts',
         },
         {
           text: '7.8 Paying Fees',
-          link: '/aztec-js/getting-started/paying-fees',
+          link: '/aztec-js/paying-fees',
         },
         {
           text: '7.9 Testing Contracts',
-          link: '/aztec-js/getting-started/testing-contracts',
+          link: '/aztec-js/testing-contracts',
         },
         {
           text: '7.10 Reference',
