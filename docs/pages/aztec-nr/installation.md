@@ -1,5 +1,9 @@
 # Installation
 
+## Ciara's Notes
+
+I've added some here but needs finishing probs 
+
 Before learning how to create Aztec smart contracts, we must first install some tools we will use in the development process:
 - **Aztec Tools**:
     - `aztec`: to manage infrastructure subsystems (sandbox, sequencer, prover, pxe, etc) and provides utility commands to interact with the network

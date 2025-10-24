@@ -1,5 +1,7 @@
 # Deploying
 
+## Mike's notes
+
 9. Deploy
     1. Contract Classes & Instances
     2. Registering a new Contract Class

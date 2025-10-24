@@ -1,4 +1,11 @@
 # Protocol Oracles
 
+## Mike's notes 
+
 - List them?
-- Maybe that can just be part of the protocol spec?
+- Why would you use them
+- How would you use them in a smart contract
+
+## Ciara's notes
+
+- How to use them and not get f*cked

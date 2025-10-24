@@ -1,5 +1,7 @@
 # Common Patterns
 
+## Mike's notes
+
 - Mutating Private State Variables via Private Functions
     - Mutating your own state
     - Mutating someone else's state

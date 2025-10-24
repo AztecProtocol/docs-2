@@ -1,5 +1,7 @@
 # Private Messaging
 
+## Mike's notes
+
 - Reiterate Lifecycle concepts:
     - Create, Choose Recipient(s), Encrypt, Emit, Discover, Decrypt, Process, Store, Read, Nullify
 1. Message Delivery
@@ -45,3 +47,7 @@
 4. Advanced
     - Establishing an ECDH shared secret
     - Custom log layouts
+
+## Ciara's notes
+
+- This replaces note discovery so we should make that crystal clear

@@ -1,5 +1,7 @@
 # State Variables
 
+## Mike's notes (this one is massive and that's ok)
+
     1. Storage
         - Declaring Contract Storage
             - #[storage]
@@ -42,7 +44,7 @@
                     - zcash-style
                     - plume-style
                     - project-tachyon-style
-        5. How to share the private data with people
+        5. How to share the private data with people (maybe link to private messaging doc)
             - Explain
         6. PrivateMutable
             - Initialisation dangers
@@ -74,3 +76,7 @@
             1. Authwits
             2. Auth keypair vs Nullifier keypair
             3. zcash vs plume nullifiers
+
+## Ciara's notes
+
+Also needs section on custom notes &&&&& Partial notes pretty please (I can write theory on partial notes cos I've understood the source code - NOTES ARE LIKE ONIONS)

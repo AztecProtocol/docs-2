@@ -1,5 +1,7 @@
 # Optimizing Functions 
 
+## Mike's notes
+
 ## Private vs Public vs Utility vs Another Language (vs Unconstrained!!!)
     - The approaches to optimising are different.
     - Utility vs Unconstrained vs Another Language

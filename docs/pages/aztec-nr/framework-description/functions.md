@@ -1,5 +1,7 @@
 # Functions
 
+## Mike's notes
+
 3. Functions
     1. Public, Private, Utility
         - Concepts
