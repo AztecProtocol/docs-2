@@ -2,7 +2,7 @@
 
 ## Mike's notes
 
-11. L1<>L2 Messaging
+11. L1\<\>L2 Messaging
     1. L2->L1 Messages
         - Creating an L2->L1 Message
         - Consuming an L2->L1 Message
