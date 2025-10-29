@@ -21,11 +21,11 @@ contract MyContract {
 
 the `#[aztec]` macro performs a lot of the low-level operations required to take a circuit language like Noir and build smart contracts out of it - including things like automatically creating external interfaces, inserting standard contract functions, etc. all aztec smart contracts must have this macro applied to them.
 
->note: each noir crate (package) can only have _a single_ contract. if you are writing a multi-contract system, then each of them needs to be in their own separate crate. <link to docs on noir crates and workspaces>
+>note: each noir crate (package) can only have _a single_ contract. if you are writing a multi-contract system, then each of them needs to be in their own separate crate. (link to docs on noir crates and workspaces)
 
 ## Imports
 
-except for the `#[aztec]` macro import, all other imports need to go _inside_ the `contract` block - this is because `contract` acts like `mod`, creating a new module <link to noir modules>.
+except for the `#[aztec]` macro import, all other imports need to go _inside_ the `contract` block - this is because `contract` acts like `mod`, creating a new module (link to noir modules).
 
 ```noir
 use aztec::macros::aztec;
@@ -51,7 +51,7 @@ contract MyContract {
 }
 ```
 
-in aztec this process is a bit more involved, as not only are there both private and public variables, there are multiple _kinds_ of state variables. we do this by defining a `struct` <link to noir structs> that will hold the entire contract state. we call this struct _the storage struct_, and each variable inside this struct is called _a state variable_<link>.
+in aztec this process is a bit more involved, as not only are there both private and public variables, there are multiple _kinds_ of state variables. we do this by defining a `struct` (link to noir structs) that will hold the entire contract state. we call this struct _the storage struct_, and each variable inside this struct is called _a state variable_<link>.
 
 ```noir
 use aztec::macros::aztec;
@@ -63,7 +63,7 @@ contract MyContract {
         state_vars::{PrivateMutable, PublicMutable}
     };
 
-    // the storage struct can have any name, but it is typically just called `Storage`. it must have the `#[storage]` struct applied to it.
+    // the storage struct can have any name, but it is typically just called `Storage`. it must have the `#[storage]` macro applied to it.
     // this struct must also have a generic type called C or Context. for now try to pretend it is not there
     #[storage]
     struct Storage<C> {
@@ -74,8 +74,6 @@ contract MyContract {
     }
 }
 ```
-
->all contract state must be in a single struct. the #[storage] macro can only be used once
 
 ## Events
 
