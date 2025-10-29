@@ -2,6 +2,7 @@
 
 aztec contracts have both private and public functions. let's start with the public part, building an equivalent erc20 token:
 
+```rust
 #[aztec]
 contract token {
     // declare state variables
@@ -48,9 +49,11 @@ contract token {
 
     // meta: consider also writing a balance_of getter
 }
+```
 
 now add the capacity  private balance (use the balance set library to avoid immediately exposing notes and private set).
 
+```rust
 #[aztec]
 contract token {
     #[storage]
@@ -82,6 +85,7 @@ contract token {
         self.emit(to, Transfer { self.msg_sender, to, amount });
     }
 }
+```
 
 things to notice that were different:
  - new state variables with different primitives

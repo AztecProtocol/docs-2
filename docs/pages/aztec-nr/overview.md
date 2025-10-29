@@ -15,6 +15,6 @@ Make it hard to shoot yourself in the foot by making it clear when something is 
 a good example of this is writing to private state variables. These functions return a `NoteMessagePendingDelivery` struct, which results in a compiler error unless used. This is because writing to private state also requires sending an encrypted message with the new state to the people that need to access it - otherwise, because it is private, they will not even know the state changed.
 
 ```
-storage.votes.insert(new_vote); // -> compiler error - unused NoteMessagePendingDelivery return value 
+storage.votes.insert(new_vote); // compiler error - unused NoteMessagePendingDelivery return value 
 storage.votes.insert(new_vote).deliver(vote_counter); // the vote counter account will now be notified of the new vote
 ```
