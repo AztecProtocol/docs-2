@@ -1,0 +1,12 @@
+note: 
+    we assume you already know what a smart contract is and are familiar with solidity. if you do not not, head to https://docs.soliditylang.org/en/v0.8.30/introduction-to-smart-contracts.html. 
+    we also assume you have basic knowledge of what a zero knowledge proof is and what noir looks like - if you do not, head to ???? (noir docs)?
+
+A Solidity smart contract on Ethereum has `external` functions anyone can call, but everything about executing them is public information to the entire internet: when they were called, who called them, and with what parameters. additionally, all contract state is also public: eg anyone can query the token balance of any account at any time. sharing an ethereum address with someone means also sharing all past and future onchain activity with them forever. aztec extends smart contracts by adding privacy to them.
+
+an aztec contract has public external functions, and these work just like in ethereum. but it also has _private_ external functions, which don't reveal anything: the caller, all parameters, even the fact that the contract was executed, these all remain hidden. aztec contracts can also have _private_ state, which is stored encrypted onchain so that only account with the corresponding keys can read it. but despite none of this information being revealed, private functions can still be verified for correct execution via zero knowledge proofs.
+
+note:
+    in solidity 'public' and 'private' specify function visibility, along with 'external' and 'internal' (https://docs.soliditylang.org/en/latest/contracts.html#function-visibility). in aztec, the terms 'public' and 'private' **always** refer to whether information is public (i.e. known to all) or private (i.e. known to some) - never to function visibility. aztec contracts do have both 'external' and 'internal' functions however, and their meaning is the exact same as in solidity (i.e. whether a function can be called from the outside or not).
+
+private smart contracts are quite different from regular smart contracts, because building private applications is hard. there are many considerations to be had when building such an application, and the design and tradeoff space is very large. aztecnr provides multiple utilities to make this task easier
