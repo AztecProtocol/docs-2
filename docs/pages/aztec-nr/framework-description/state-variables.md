@@ -67,7 +67,7 @@ fn my_utility_function() {
 
 ### Storage Slots
 
-each state variable gets assigned a different_storage slot_, a numerical value. Their meaning depends on the kind of state variable: for public state variables they are related to slots in the public data tree, and for private state variables they are metadata that gets included in the note hash. The purpose of slots is the same for both domains however: they keep the values of different state values _separate_ so that they do not interfere with one another.
+each state variable gets assigned a different_storage slot_, a numerical value. They they are used depends on the kind of state variable: for public state variables they are related to slots in the public data tree, and for private state variables they are metadata that gets included in the note hash. The purpose of slots is the same for both domains however: they keep the values of different state values _separate_ so that they do not interfere with one another.
 
 storage slots are a low level detail that users don't typically need to concern themselves with. they are automatically allocated to each state variable by aztecnr and don't require any kind of manual intervention. indeed, utilizing storage slots directly can be dangerous as it may accidentally result in data collisions across state variables, or invariants being broken.
 
@@ -78,6 +78,8 @@ in some advanced use cases however it can be useful to have access to these low-
 ## Public State Variables
 
 these are state variables that have _public_ content, that is, everyone on the network can see the values they store. they are pretty much equivalent to Solidity state variables.
+
+### Choosing a Public State Variable
 
 because they reside in the network's public storage tree (link to foundational concepts), they can only be written to by public contract functions. it is possible to read _past_ values of a public state variable in a private contract function, but the current values of the network's public state tree are not accessible in those.
 
@@ -143,30 +145,81 @@ notes are more complicated than regular public state, and so it helps to see the
 
 - creation: an account executing a private contract function creates a new note according to contract logic, e.g. transferring tokens to a recipient. note values (e.g. the token amount) and metadata are set, and the note hash computed and inserted as one of the effects of the transaction (link to protocol docs - tx effects).
 
-- encryption: the content of the note is encrypted with a key only the sender and intended recipient know - no other account can decrypt this message.
+- encryption: the content of the note is encrypted with a key only the sender and intended recipient know - no other account can decrypt this message. (link to message layout, how we do secret sharing and encryption)
 
-- delivery: the encrypted message is delivered to the recipient via some means. options include storing it onchain as a transaction log, or sending it offchain e.g. via email or by having the recipient scan a QR code on the sender's device.
+- delivery: the encrypted message is delivered to the recipient via some means. options include storing it onchain as a transaction log, or sending it offchain e.g. via email or by having the recipient scan a QR code on the sender's device. (link to delivery details and options)
 
-- insertion: the transaction is sent to the network and gets included in a block. the note hash is inserted into the note hash tree - this is visible to the entire network, but the content of the note remains private.
+- insertion: the transaction is sent to the network and gets included in a block. the note hash is inserted into the note hash tree - this is visible to the entire network, but the content of the note remains private. (link to protocol details - note hash tree insertion and tx effects)
 
-- discovery: the recipient processes the encrypted message they were sent, decrypting it and finding the note's content (i.e. the hash preimage). they verify that the note's hash exists on chain in the note hash tree. they store the note's content in their own private database, and can now spend the note.
+- discovery: the recipient processes the encrypted message they were sent, decrypting it and finding the note's content (i.e. the hash preimage). they verify that the note's hash exists on chain in the note hash tree. they store the note's content in their own private database, and can now spend the note. (link to message discovery and processing)
 
 - reading: while executing  private contract function, the recipient fetches the note's content and metadata from their private database and shows that its hash exists in the note hash tree as part of the zero-knowledge proof. 
 
-- nullification: the recipient computes the notes nullifier and inserts it as one of the effects of the transaction (link to prot docs tx effects), preventing the note from being read again.
+- nullification: the recipient computes the note's nullifier and inserts it as one of the effects of the transaction (link to prot docs tx effects), preventing the note from being read again.
 
 #### Nullifiers
 
+the nullifier tree is append-only - if it wasn't, when a note was spent then external observers would notice that the tree leaf inserted in some transaction was modified in a second transaction, therefore linking them together and leaking privacy. it would for example mean that when a user made a payment to a third party, they'd be able to know when the recipient spent the received funds. nullifiers exist to solve the above issue.
+
+a nullifier is a value which indicates a resource has been spent. nullifiers are unique, and the protocol forbids the same nullifier from being inserted into the tree twice. spending the same resource therefore results in a duplicate nullifier, which invalidates the transaction.
+
+most often, nullifiers are used to mark a note as being spent, which prevents note double spends. this requires two properties from the function that computes a note's nullifier:
+- determinism: the nullifier **must** be deterministic given a note, so that the same nullifier value is computed every time the note is attempted to be spent. A non-deterministic nullifier would result in a note being spendable more than once because the nullifiers would not be duplicates.
+- secret: the nullifier **must** not be computable by anyone except the owner, _even by someone that knows the full note content_. This is because some third parties _do_ know the note content: when paying someone and creating a note for them, the payer creates the note on their device and thus has access to all of its data and metadata.
+
+there are multiple ways to compute nullifiers that fulfill this property, but the most widely used one is to have the nullifier be a hash of the note contents concatenated with a private key of the note's owner (link to account keys). These values are immutable, and only the owner knows their private keys, and so both determinism and secrecy are achieved. These nullifiers are sometimes called 'zcash-style nullifiers', because this is the format ZCash uses for theirs.
+
+### How aztec-nr Abstracts Private State Variables
+
+and mentioned in notes and nullifiers (link), implementing a private state variable requires careful coordination of multiple primitives and concepts (creating notes, encrypting, delivering, discovering and processing messages, reading notes and computing their nullifiers). aztec-nr provides convenient types and functions that handle all of these low level details in order to allow developers to write safe code without having to understand the nitty-gritty.
+
+by applying the `#[note]` macro to a noir struct, users can define values that will be storable in notes (link to macro docs. also this is a bit of a lie right now, notes also need an owner and randomness, but they soon wont). private state variables can then hold these notes and be used to read, write, and deliver note messages to the intended recipient.
+
+>advanced users can change this default behavior by either defining their own custom note hash and nullifier functions (link to custom notes), implementing their own state variables (link), or even accessing the note hash and nullifiers tree directly (link).
+
+the snippet below shows a contract with two private state variables: an admin address (stored in an `AddressNote`) and a counter of how many calls the admin has made (stored in a `UintNote`). These values will be private and therefore not known except by the accounts that own these notes (the admin). In the `perform_admin_action` private function, the contract checks that it is being called by the correct admin and updates the call count by incrementing it by one.
+
+(this is not a real snippet, it's missing some small irrelevant details - but the gist of it is correct)
+
+```rust
+#[note]
+struct AddressNote {
+    value: AztecAddress,
+}
+
+#[note]
+struct UintNote {
+    value: u128,
+}
+
+#[storage]
+struct Storage {
+    admin: PrivateImmutable<AddressNote>,
+    admin_call_count: PrivateMutable<UintNote>,
+}
+
+#[external("private")]
+fn perform_admin_action() {
+    // Read the contract's admin address and check against the caller
+    let admin = self.storage.admin.read().value;
+    assert(self.msg_sender() == admin);
+
+    // Update the call count by replacing (updating - rename soon) the current note with a new one that equals the
+    // current value + 1 - this requires knowing what the current value is in the first place, i.e. reading the variable.
+    //
+    // We then deliver the encrypted message with the note's content to the admin, so that they become aware of the new
+    // value of the counter and can update it again in the future.
+    self.storage.admin_call_count
+        .replace(|current| UintNote{ value: current.value + 1 }) // wouldn't it be great if we didn't have to deal with this wrapping and unwrapping?
+        .deliver(admin);
+
+    ...
+}
+```
+
+### Choosing a Private State Variable
+
 <!-- 
-                2. Nullifiers (concepts)
-                    - Stored in a tree
-        2. Private State Variables
-            - Intro for everything that follows (Justification):
-                - Convenient wrappers that manage note structs and their nullifiers:
-                - Safe reading & writing of private state
-                - Safe nullification
-                - Rails for private emission of notes to users
-                    - If a Private State Variable gives you a new note, it forces you to consider how you want to share it with other users, through `emit`.
         3. Choosing a Private State variable
             - Quick Ref table
                 - Map private state vars to their use cases
