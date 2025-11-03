@@ -51,7 +51,7 @@ contract MyContract {
 }
 ```
 
-in aztec this process is a bit more involved, as not only are there both private and public variables, there are multiple _kinds_ of state variables. we do this by defining a `struct` (link to noir structs) that will hold the entire contract state. we call this struct _the storage struct_, and each variable inside this struct is called _a state variable_<link>.
+in aztec this process is a bit more involved, as not only are there both private and public variables, there are multiple _kinds_ of state variables. we do this by defining a `struct` (link to noir structs) that will hold the entire contract state. we call this struct _the storage struct_, and each variable inside this struct is called _a state variable_ (link).
 
 ```noir
 use aztec::macros::aztec;
@@ -106,17 +106,17 @@ contract MyContract {
 
     #[external("private")]
     fn my_private_function(parameter_a: u128, parameter_b: AztecAddress) {
-        ...
+        // ...
     }
 
     #[external("public")]
     fn my_public_function(parameter_a: u128, parameter_b: AztecAddress) {
-        ...
+        // ...
     }
 
     #[external("utility")]
     fn my_utility_function(parameter_a: u128, parameter_b: AztecAddress) {
-        ...
+        // ...
     }
 }
 ```
