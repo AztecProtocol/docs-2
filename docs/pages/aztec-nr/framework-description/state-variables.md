@@ -1,12 +1,12 @@
 # State Variables
 
-a contract's state is defined by multiple values, e.g. in a token it'd be the total supply, user balances, outstanding approvals, accounts with minting permission, etc. each of these persisting values is called a _state variable_.
+A contract's state is defined by multiple values, e.g. in a token it'd be the total supply, user balances, outstanding approvals, accounts with minting permission, etc. each of these persisting values is called a _state variable_.
 
-one of the first design considerations for any smart contract is how it'll store its state. this is doubly true in aztec due to there being both public and private state - the tradeoff space is large, so there's room for lots of decisions.
+One of the first design considerations for any smart contract is how it'll store its state. this is doubly true in aztec due to there being both public and private state - the tradeoff space is large, so there's room for lots of decisions.
 
 ## The Storage Struct
 
-state variables are declared in solidity by simply listing them inside of the contract, like so:
+State variables are declared in solidity by simply listing them inside of the contract, like so:
 
 ```solidity
 contract MyContract {
@@ -14,7 +14,7 @@ contract MyContract {
 }
 ```
 
-in aztecnr we instead define a `struct` <link to noir structs> that holds all state variables. we call this struct **the storage struct**, and it is identified by having the `#[storage]` macro <link to storage api ref> applied to it.
+In Aztec.nr we instead define a `struct` (link to noir structs) that holds all state variables. we call this struct **the storage struct**, and it is identified by having the `#[storage]` macro (link to storage api ref) applied to it.
 
 ```noir
 use aztec::macros::aztec;
