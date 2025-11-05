@@ -7,7 +7,7 @@ High-level structure of how Aztec smart contracts including the different compon
 All contracts start with importing the required files and declaring a contract using the `contract` keyword:
 
 ```noir
-// import the `aztec` macro from aztecnr
+// import the `aztec` macro from Aztec.nr
 use aztec::macros::aztec;
 
 // use the 'contract' keyword to declare a contract, applying the `aztec` macro
@@ -41,7 +41,7 @@ contract MyContract {
 
 ## State Variables
 
-With the boilerplate out of the way, it is now the time to begin defining the contract logic. It is recommended to start development by understanding the shape the _state_ of the contract will have: 
+With the boilerplate out of the way, it is now the time to begin defining the contract logic. It is recommended to start development by understanding the shape the _state_ of the contract will have:
 - Which values will be private?
 - Which will be public?
 - What properties are required (is mutability or immutability needed? is there a single global value, like a token total supply, or does each user get one, like a balance?).
@@ -54,7 +54,7 @@ contract MyContract {
 }
 ```
 
-In Aztec this process is a bit more involved, as not only are there both private and public variables (where now these keywords refer to the privacy of the variable rather than their acessibility), there are multiple _kinds_ of state variables.
+In Aztec this process is a bit more involved, as not only are there both private and public variables (where now these keywords refer to the privacy of the variable rather than their accessibility), there are multiple _kinds_ of state variables.
 
 We define state using a [`struct`](https://noir-lang.org/docs/noir/concepts/data_types/structs) that will hold the entire contract state. we call this struct _the storage struct_, and each variable inside this struct is called [_a state variable_.](https://docs.aztec.network/nightly/developers/docs/aztec-nr/framework-description/state-variables)
 
@@ -64,7 +64,7 @@ use aztec::macros::aztec;
 #[aztec]
 contract MyContract {
     use aztec::{
-        macros::storage, 
+        macros::storage,
         state_vars::{PrivateMutable, PublicMutable}
     };
 
@@ -99,9 +99,9 @@ struct Transfer {
 
 Contracts are interacted with by invoking their `external` functions. there are three kinds of `external` functions:
 
-- External **private** functions, which reveal nothing about their execution and are executed off-chain on the user's device, producing a zero-knowledge proof of execution that is sent to the network as part of a transaction.
+- External **private** functions, which reveal nothing about their execution and are executed off chain on the user's device, producing a zero-knowledge proof of execution that is sent to the network as part of a transaction.
 - External **public** functions, which are invoked publicly by nodes in the network (like any `external` Solidity contract function).
-- External **utility** functions, which are executed off-chain on the user's device by applications in order to display useful information, e.g. retrieve contract state. These are never part of a transaction.
+- External **utility** functions, which are executed off chain on the user's device by applications in order to display useful information, e.g. retrieve contract state. These are never part of a transaction.
 
 ```noir
 use aztec::macros::aztec;
@@ -129,7 +129,7 @@ contract MyContract {
 
 Additionally, contracts can also define `internal` functions, which cannot be called by other contracts (like any `internal` Solidity function). These exist to help organize the user's code, reuse functionality, etc.
 
-// show an internal fn being called from one or two external ones. this feature is not yet complete in aztecnr
+// show an internal fn being called from one or two external ones. this feature is not yet complete in Aztec.nr
 
 ### Current Limitations
 
