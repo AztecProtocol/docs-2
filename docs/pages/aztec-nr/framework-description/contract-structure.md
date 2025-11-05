@@ -1,15 +1,13 @@
 # Contract Structure
 
-high level structure of how contracts are written and what they're made of
-
-(i am not sure if there should be links throughout this page to the different relevant sections, eg state vars, events, functions, etc., or if we should just do the entire thing in one go with much more detail. i am writing this as if you had never seen a contract in your life and needed to get a sense of how the thing sort of looks to wrap your head around it. there'd be some minor content duplication between this page and the dedicated page in that case - i think that's fine)
+High-level structure of how Aztec smart contracts including the different components.
 
 ## contract block
 
-all contracts begin the same:
+All contracts start with importing the required files and declaring a contract using the `contract` keyword:
 
 ```noir
-// import the `aztec` macro from aztecnr
+// import the `aztec` macro from Aztec.nr
 use aztec::macros::aztec;
 
 // use the 'contract' keyword to declare a contract, applying the `aztec` macro
@@ -19,13 +17,15 @@ contract MyContract {
 }
 ```
 
-the `#[aztec]` macro performs a lot of the low-level operations required to take a circuit language like Noir and build smart contracts out of it - including things like automatically creating external interfaces, inserting standard contract functions, etc. all aztec smart contracts must have this macro applied to them.
+By convention, contracts are named in `PascalCase`.
 
->note: each noir crate (package) can only have _a single_ contract. if you are writing a multi-contract system, then each of them needs to be in their own separate crate. (link to docs on noir crates and workspaces)
+The `#[aztec]` macro performs a lot of the low-level operations required to take a circuit language like Noir and build smart contracts out of it - including automatically creating external interfaces, inserting standard contract functions, etc. **All Aztec smart contracts must have this macro applied to them.**
+
+**Note:** each Noir crate (package) can only have _a single_ contract. If you are writing a multi-contract system, then each of them needs to be in their own separate crate. To learn more about crates and packages, visit the [Noir documentation](https://noir-lang.org/docs/noir/modules_packages_crates/crates_and_packages).
 
 ## Imports
 
-except for the `#[aztec]` macro import, all other imports need to go _inside_ the `contract` block - this is because `contract` acts like `mod`, creating a new module (link to noir modules).
+Aside from the `#[aztec]` macro import, all other imports need to go _inside_ the `contract` block - this is because `contract` acts like `mod`, creating a new [module](https://noir-lang.org/docs/noir/modules_packages_crates/modules).
 
 ```noir
 use aztec::macros::aztec;
@@ -37,13 +37,16 @@ contract MyContract {
 }
 ```
 
->note: noir's vscode extension is able to take care of most imports and put them in the correct place automatically
+**Note:** [Noir's VSCode extension](https://docs.aztec.network/nightly/developers/docs/aztec-nr/installation) is able to take care of most imports and put them in the correct place automatically.
 
 ## State Variables
 
-with the boilerplate out of the way, it is now the time to begin defining the contract logic. it is recommended to start development by understanding the shape the _state_ of the contract will have: which values will be private, which will be public, and what properties are required (is mutability or immutability needed? is there a single global value, like a token total supply, or does each user get one, like a balance?).
+With the boilerplate out of the way, it is now the time to begin defining the contract logic. It is recommended to start development by understanding the shape the _state_ of the contract will have:
+- Which values will be private?
+- Which will be public?
+- What properties are required (is mutability or immutability needed? is there a single global value, like a token total supply, or does each user get one, like a balance?).
 
-in solidity, this is done by simply declaring variables inside of the contract, like so:
+In Solidity, this is done by simply declaring variables inside of the contract, like so:
 
 ```solidity
 contract MyContract {
@@ -51,7 +54,9 @@ contract MyContract {
 }
 ```
 
-in aztec this process is a bit more involved, as not only are there both private and public variables, there are multiple _kinds_ of state variables. we do this by defining a `struct` (link to noir structs) that will hold the entire contract state. we call this struct _the storage struct_, and each variable inside this struct is called _a state variable_ (link).
+In Aztec this process is a bit more involved, as not only are there both private and public variables (where now these keywords refer to the privacy of the variable rather than their accessibility), there are multiple _kinds_ of state variables.
+
+We define state using a [`struct`](https://noir-lang.org/docs/noir/concepts/data_types/structs) that will hold the entire contract state. we call this struct _the storage struct_, and each variable inside this struct is called [_a state variable_.](https://docs.aztec.network/nightly/developers/docs/aztec-nr/framework-description/state-variables)
 
 ```noir
 use aztec::macros::aztec;
@@ -59,7 +64,7 @@ use aztec::macros::aztec;
 #[aztec]
 contract MyContract {
     use aztec::{
-        macros::storage, 
+        macros::storage,
         state_vars::{PrivateMutable, PublicMutable}
     };
 
@@ -77,9 +82,10 @@ contract MyContract {
 
 ## Events
 
-same as in solidity, aztec contracts can define events which notify people that something has happened. in aztec however events can also be emitted privately, in which case only some users will learn of the event.
+As in Solidity, Aztec contracts can define events to notify that some state has changed. However, in Aztec, events can also be emitted privately, in which case, only some users will learn of the event.
 
-events are simply a struct marked with the `#[event]` macro:
+Events are a struct marked with the `#[event]` macro:
+
 ```noir
 #[event]
 struct Transfer {
@@ -91,11 +97,11 @@ struct Transfer {
 
 ## Functions
 
-contracts are interacted with by invoking their `external` functions. there are three kinds of `external` functions:
+Contracts are interacted with by invoking their `external` functions. there are three kinds of `external` functions:
 
-- external private functions, which reveal nothing about their execution and are run on the user's device, producing a zero knowledge proof that is sent to the network as part of a transaction.
-- external public functions, which are invoked publicly by nodes in the network (like any `external` Solidity contract function) as they process transactions
-- external utility functions, which are executed on the user's device by applications in order to display useful information, e.g. retrieve contract state. these are never part of a transaction
+- External **private** functions, which reveal nothing about their execution and are executed off chain on the user's device, producing a zero-knowledge proof of execution that is sent to the network as part of a transaction.
+- External **public** functions, which are invoked publicly by nodes in the network (like any `external` Solidity contract function).
+- External **utility** functions, which are executed off chain on the user's device by applications in order to display useful information, e.g. retrieve contract state. These are never part of a transaction.
 
 ```noir
 use aztec::macros::aztec;
@@ -121,14 +127,14 @@ contract MyContract {
 }
 ```
 
-additionally, contracts can also define `internal` functions, which cannot be called by other contracts (like any `internal` Solidity function). these exist to help organize the user's code, reuse functionality, etc.
+Additionally, contracts can also define `internal` functions, which cannot be called by other contracts (like any `internal` Solidity function). These exist to help organize the user's code, reuse functionality, etc.
 
-// show an internal fn being called from one or two external ones. this feature is not yet complete in aztecnr
+// show an internal fn being called from one or two external ones. this feature is not yet complete in Aztec.nr
 
 ### Current Limitations
 
-all #[external] contract functions must be defined _directly inside the `contract` block_, that is, in the same file. it is possible to define `#[internal]` and helper functions in `mod`s in other files, but not `#[external]` functions.
+All #[external] contract functions must be defined _directly inside the `contract` block_, that is, in the same file. it is possible to define `#[internal]` and helper functions in `mod`s in other files, but not `#[external]` functions.
 
-additionally, noir does not feature inheritance nor is there currently any other mechanism to extend and reuse contract logic. e.g. it is not possible to take a token contract and extend it to add minting functionality, or to reuse it in a liquidity pool. like in vyper, the entire logic must live in a single file.
+Additionally, **Noir does not feature inheritance** nor is there currently any other mechanism to extend and reuse contract logic. e.g. it is not possible to take a token contract and extend it to add minting functionality, or to reuse it in a liquidity pool. Like in Vyper, the entire logic must live in a single file.
 
-we expect to lift some of these restrictions sometime after the release of noir 1.0.
+We expect to lift some of these restrictions sometime after the release of Noir 1.0.
