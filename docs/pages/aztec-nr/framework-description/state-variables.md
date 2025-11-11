@@ -109,6 +109,8 @@ Below is a table comparing the key properties of the different public state vari
 
 It **cannot be read or written to privately**, but it is possible to call private functions that enqueue a public call in which a `PublicMutable` is accessed. For example, a voting contract may allow private submission of votes which then enqueue a public call in which the vote count, represented as a `PublicMutable<u128>`, is incremented. This would let anyone see how many votes have been cast, while preserving the privacy of the account that cast the vote.
 
+```noir
+```
 <!-- link enqueue public call -->
 
 ### Public Immutable
@@ -117,6 +119,9 @@ It **cannot be read or written to privately**, but it is possible to call privat
 `PublicImmutable` is a simplified version `PublicMutable`: it's a public state variable that can only be written (initialized) once, at which point it can only be read. Unlike Solidity `immutable` state variables, which must be set in the contract's constructor, a `PublicImmutable` can be initialized _at any point in time_ during the contract's lifecycle and attempts to read it prior to initialization will revert.
 
 Due to the value being immutable, it is also possible to read it during private execution - once a circuit proves that the value was set in the past, it knows it cannot have possibly changed. This makes this state variable suitable for immutable public contract configuration or one-off public actions, such as whether a user has signed up or not.
+
+```noir
+```
 
 ### Delayed Public Mutable
 <!-- (link to apiref) -->
@@ -127,6 +132,8 @@ It is sometimes quite problematic to be unable to read public mutable state in p
 
 The existence of minimum delays means that a private function that reads a public value at an anchor block has a guarantee that said historical value will remain the current value until _at least_ some time in the future - before the delay elapses. as long as the transaction gets included in a block before that time (by using the `include_by_timestamp` tx property), the read value is valid.
 
+```noir
+```
 <!-- link include_by_timestamp full ref -->
 
 ## Private State Variables
@@ -160,6 +167,8 @@ The note content, plus the metadata, are all hashed together, and it is this has
 
 Note: Aztec.nr comes with some prebuilt note types, including [`UintNote`](https://github.com/AztecProtocol/aztec-packages/tree/08935f75dbc3052ce984add225fc7a0dac863050/noir-projects/aztec-nr/uint-note) and [`AddressNote`](https://github.com/AztecProtocol/aztec-packages/tree/08935f75dbc3052ce984add225fc7a0dac863050/noir-projects/aztec-nr/address-note), but users are also free to create their own with the `#[note]` macro.
 
+```noir
+```
 <!-- link to custom notes docs -->
 
 ##### Note Discovery
@@ -168,44 +177,46 @@ Notes are private meaning that not even the intended recipient is aware of their
 
 Recipients learning about notes created for them is known as 'note discovery', which is a process Aztec.nr handles efficiently, automatically. It does mean however that when a note is created, a _private message_ with the encrypted content of note is created and needs to be delivered to a recipient via one of multiple means.
 
+```noir
+```
 <!-- link to private messaging -->
 
 ##### Note Lifecycle
 
 Notes are more complicated than public state, and so it helps to see the different stages they go through, and when and where each stage happens.
 
-- **Creation**: an account executing a private contract function creates a new note according to contract logic, e.g. transferring tokens to a recipient. note values (e.g. the token amount) and metadata are set, and the note hash computed and inserted as one of the effects of the transaction 
+- **Creation**: an account executing a private contract function creates a new note according to contract logic, e.g. transferring tokens to a recipient. The note values (e.g. the token amount) and metadata are set, and the note hash computed and inserted as one of the effects of the transaction.
 <!-- (link to protocol docs - tx effects). -->
 
-- **Encryption**: the content of the note is encrypted with a key only the sender and intended recipient know - no other account can decrypt this message. 
+- **Encryption**: the content of the note is encrypted with a key only the sender and intended recipient know - no other account can decrypt this message.
 <!-- (link to message layout, how we do secret sharing and encryption) -->
 
-- **Delivery**: the encrypted message is delivered to the recipient via some means. options include storing it onchain as a transaction log, or sending it offchain e.g. via email or by having the recipient scan a QR code on the sender's device. 
+- **Delivery**: the encrypted message is delivered to the recipient via some means. Options include storing it onchain as a transaction log, or sending it offchain e.g. via email or by having the recipient scan a QR code on the sender's device. 
 <!-- (link to delivery details and options) -->
 
-- **Insertion**: the transaction is sent to the network and gets included in a block. the note hash is inserted into the note hash tree - this is visible to the entire network, but the content of the note remains private. 
+- **Insertion**: the transaction is sent to the network and gets included in a block. The note hash is inserted into the note hash tree - this is visible to the entire network, but the content of the note remains private. 
 <!-- (link to protocol details - note hash tree insertion and tx effects) -->
 
-- **Discovery**: the recipient processes the encrypted message they were sent, decrypting it and finding the note's content (i.e. the hash preimage). they verify that the note's hash exists on chain in the note hash tree. they store the note's content in their own private database, and can now spend the note. 
+- **Discovery**: the recipient processes the encrypted message they were sent, decrypts it to get the note's content (i.e. the hash preimage). They verify that the note's hash exists onchain in the note hash tree. They store the note's content in their own private database, and can now spend the note. 
 <!-- (link to message discovery and processing) -->
 
-- **Reading**: while executing private contract function, the recipient fetches the note's content and metadata from their private database and shows that its hash exists in the note hash tree as part of the zero-knowledge proof.
+- **Reading**: while executing private contract function, the recipient fetches the note's content and metadata from their private database and show that it's hash exists in the note hash tree as part of the zero-knowledge proof.
 
-- **Nullification**: the recipient computes the note's nullifier and inserts it as one of the effects of the transaction 
+- **Nullification**: the recipient computes the note's nullifier and inserts it as one of the effects of the transaction .
 <!-- (link to prot docs tx effects), preventing the note from being read again. -->
 
 #### Nullifiers
 
-the nullifier tree is append-only - if it wasn't, when a note was spent then external observers would notice that the tree leaf inserted in some transaction was modified in a second transaction, therefore linking them together and leaking privacy. it would for example mean that when a user made a payment to a third party, they'd be able to know when the recipient spent the received funds. nullifiers exist to solve the above issue.
+The nullifier tree is append-only - if it wasn't, when a note was spent then external observers would notice that the tree leaf inserted in some transaction was modified in a second transaction, therefore linking them together and leaking privacy. It would, for example, mean that when a user made a payment to a third party, they'd be able to know when the recipient spent the received funds. Nullifiers exist to solve the above issue.
 
-a nullifier is a value which indicates a resource has been spent. nullifiers are unique, and the protocol forbids the same nullifier from being inserted into the tree twice. spending the same resource therefore results in a duplicate nullifier, which invalidates the transaction.
+A nullifier is a value which indicates a resource has been spent. Nullifiers are unique, and the protocol forbids the same nullifier from being inserted into the tree twice. Spending the same resource therefore results in a duplicate nullifier, which invalidates the transaction.
 
-most often, nullifiers are used to mark a note as being spent, which prevents note double spends. this requires two properties from the function that computes a note's nullifier:
+Most often, nullifiers are used to mark a note as being spent, which prevents note double spends. This requires two properties from the function that computes a note's nullifier:
 
-- determinism: the nullifier **must** be deterministic given a note, so that the same nullifier value is computed every time the note is attempted to be spent. A non-deterministic nullifier would result in a note being spendable more than once because the nullifiers would not be duplicates.
-- secret: the nullifier **must** not be computable by anyone except the owner, _even by someone that knows the full note content_. This is because some third parties _do_ know the note content: when paying someone and creating a note for them, the payer creates the note on their device and thus has access to all of its data and metadata.
+- **Determinism**: the nullifier **must** be deterministic given a note, so that the same nullifier value is computed every time the note is attempted to be spent. A non-deterministic nullifier would result in a note being spendable more than once because the nullifiers would not be duplicates.
+- **Secret**: the nullifier **must** _not_ be computable by anyone except the owner, _even by someone that knows the full note content_. This is because some third parties _do_ know the note content, e.g., when paying someone and creating a note for them, the payer creates the note on their device and thus has access to all of its data and metadata.
 
-there are multiple ways to compute nullifiers that fulfill this property, but the most widely used one is to have the nullifier be a hash of the note contents concatenated with a private key of the note's owner. These values are immutable, and only the owner knows their private keys, and so both determinism and secrecy are achieved. These nullifiers are sometimes called 'zcash-style nullifiers', because this is the format ZCash uses for theirs.
+There are multiple ways to compute nullifiers that fulfill this property, but the most widely used one is to have the nullifier be a **hash of the note contents concatenated with a private key of the note's owner**. These values are **immutable**, and only the owner knows their private keys, and so both determinism and secrecy are achieved. These nullifiers are sometimes called 'zcash-style nullifiers', because this is the format ZCash uses.
 
 <!-- (link to account keys) -->
 
