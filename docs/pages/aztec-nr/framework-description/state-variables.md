@@ -207,7 +207,7 @@ most often, nullifiers are used to mark a note as being spent, which prevents no
 
 there are multiple ways to compute nullifiers that fulfill this property, but the most widely used one is to have the nullifier be a hash of the note contents concatenated with a private key of the note's owner. These values are immutable, and only the owner knows their private keys, and so both determinism and secrecy are achieved. These nullifiers are sometimes called 'zcash-style nullifiers', because this is the format ZCash uses for theirs.
 
- <!-- (link to account keys) -->
+<!-- (link to account keys) -->
 
 ### How Aztec.nr Abstracts Private State Variables
 
@@ -215,7 +215,7 @@ As mentioned in the notes and nullifiers section, implementing a private state v
 
 Developers can create their own notes by applying the `#[note]` macro to a Noir struct to define values that will be stored. Private state variables can then hold these notes and be used to read, write, and deliver note messages to the intended recipient.
 
- <!-- (link to macro docs. also this is a bit of a lie right now, notes also need an owner and randomness, but they soon wont) -->
+<!-- (link to macro docs. also this is a bit of a lie right now, notes also need an owner and randomness, but they soon wont) -->
 
 Advanced developers can also change the default behavior of the notes by: 
 
@@ -308,9 +308,15 @@ The set's current value is the collection of notes in the set that have not yet 
 
 Aggregated state, like a token user balance as a `PrivateSet` of `ValueNote`s, benefits greatly from third parties having the capacity to insert into the set. Any account can create a note for a recipient (e.g. as part of a token transfer), effectively increasing their balance, _without knowing what the total balance is_ (which would be the case if using `PrivateMutable`). This closely mirrors how fiat cash works (people are given bills/notes without knowledge of the sender of their total wealth), and is also very similar to Bitcoin's UTXO model (except private) or Zcash's notes and nullifiers.
 
-**Note**: while the contents of the set is private, _some_ accounts do know some of its contents. For example, if account A sends a note of value `20` to B, A will know that at some point in time B held a balance of at least `20`. However, A _will not_ know when B spends the note as they won't know the nullifier since it is derived using the note owner's nullifier secret.
+**Notes**: 
 
-While users can read any number of values from the set, it is **not possible to guarantee all values have been read**. For example, a user might choose not to reveal some notes, and because they are private this cannot be detected.
+1. While the contents of the set is private, _some_ accounts do know some of its contents. For example, if account A sends a note of value `20` to B, A will know that at some point in time B held a balance of at least `20`. However, A _will not_ know when B spends the note as they won't know the nullifier since it is derived using the note owner's nullifier secret.
+
+2. While users can read any number of values from the set, it is **not possible to prove that all values have been read**. This works similarly to physical cash: you can prove someone has _at least_ a certain amount (because they've shown it to you), but you cannot prove that's _all_ they have—they might have hidden some cash in their socks. With `PrivateSet` a user could run modified software that doesn't return all notes when a contract asks. You're only proving that certain notes exist, not that you've revealed the complete set. 
+
+For example, if you tried to implement a system that charges fees to users with balances over `100`, a user could simply hide some of their balance notes to appear under the threshold. Similarly, if you gave users a note that says "you've done this action once, next time pay a 10% fee," they could just not reveal that note.
+
+This limitation means certain design patterns cannot be implemented with a `PrivateSet` alone and require additional mechanisms like counted sets (which track totals), nullifiers, or public state.
 
 ## Containers
 
